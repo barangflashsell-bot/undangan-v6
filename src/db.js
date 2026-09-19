@@ -2,7 +2,22 @@ const { DatabaseSync } = require('node:sqlite');
 const path = require('node:path');
 const crypto = require('node:crypto');
 
-const DB_PATH = path.join(__dirname, '..', 'undangan.sqlite');
+const fs = require('node:fs');
+
+const ROOT_DB = path.join(__dirname, '..', 'undangan.sqlite');
+let DB_PATH = ROOT_DB;
+
+if (process.env.VERCEL) {
+  DB_PATH = path.join('/tmp', 'undangan.sqlite');
+  if (!fs.existsSync(DB_PATH) && fs.existsSync(ROOT_DB)) {
+    try {
+      fs.copyFileSync(ROOT_DB, DB_PATH);
+    } catch (e) {
+      console.warn('Could not copy sqlite to /tmp:', e.message);
+    }
+  }
+}
+
 const db = new DatabaseSync(DB_PATH);
 
 // Helper for hashing password using scrypt
