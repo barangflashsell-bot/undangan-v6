@@ -1,7 +1,7 @@
 {
-  "name": "undangan-digital-v5",
+  "name": "undangan-digital-v6",
   "version": "1.0.0",
-  "description": "Aplikasi Undangan Digital Mobile-First dengan 3 Jenis Akses (Admin, Penyewa, Tamu)",
+  "description": "Aplikasi Undangan Digital Mobile-First V6 dengan Tema Islamic Elegant dan 3 Jenis Akses (Admin, Penyewa, Tamu)",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
