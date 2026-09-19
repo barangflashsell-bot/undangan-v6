@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Undangan Pernikahan</title>
+  <title>The Wedding of Ahmad & Aisyah</title>
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/themes.css">
   <style>
-    /* Cover Lock Screen (RULE 10) */
+    /* Cover Lock Screen (RULE 10: TAMU LANGSUNG KE UNDANGAN) */
     .cover-overlay {
       position: fixed;
       inset: 0;
@@ -17,10 +17,11 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 60px 24px 40px;
+      padding: 50px 24px 36px;
       color: #ffffff;
       text-align: center;
-      transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+      transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.85s ease;
+      overflow-y: auto;
     }
 
     .cover-overlay.opened {
@@ -29,46 +30,55 @@
       pointer-events: none;
     }
 
+    .cover-top-ornament {
+      width: 180px;
+      height: 20px;
+      margin: 0 auto 8px;
+    }
+
     .cover-badge {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       letter-spacing: 3px;
       text-transform: uppercase;
-      opacity: 0.9;
+      opacity: 0.92;
       font-weight: 600;
+      color: var(--t-accent-gold);
     }
 
     .cover-names {
       font-family: var(--t-font-title);
-      font-size: 2.2rem;
+      font-size: 2.1rem;
       font-weight: 700;
-      margin: 14px 0 8px;
-      line-height: 1.2;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      margin: 12px 0 6px;
+      line-height: 1.25;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+      color: #ffffff;
     }
 
     .cover-guest-box {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(223, 183, 108, 0.4);
       border-radius: 20px;
-      padding: 24px 20px;
+      padding: 22px 18px;
       width: 100%;
-      max-width: 340px;
-      margin: 20px 0;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      max-width: 330px;
+      margin: 18px 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     }
 
     .cover-guest-label {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       opacity: 0.9;
       font-weight: 400;
+      letter-spacing: 0.5px;
     }
 
     .cover-guest-name {
       font-size: 1.35rem;
       font-weight: 800;
-      margin: 8px 0 4px;
+      margin: 8px 0 3px;
       color: #ffffff;
       letter-spacing: 0.3px;
     }
@@ -77,7 +87,7 @@
       background: var(--t-btn-bg);
       color: var(--t-btn-text);
       border: 1px solid rgba(255,255,255,0.4);
-      padding: 14px 32px;
+      padding: 14px 34px;
       border-radius: 9999px;
       font-size: 1.05rem;
       font-weight: 700;
@@ -86,14 +96,14 @@
       align-items: center;
       gap: 10px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.35);
-      animation: bounce 2s infinite;
-      transition: all 0.2s ease;
+      animation: subtlePulse 2.5s infinite;
+      transition: all 0.25s ease;
+      text-decoration: none;
     }
 
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-8px); }
-      60% { transform: translateY(-4px); }
+    @keyframes subtlePulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 8px 24px rgba(0,0,0,0.35); }
+      50% { transform: scale(1.03); box-shadow: 0 12px 28px rgba(197, 160, 89, 0.45); }
     }
 
     /* Floating Music Button */
@@ -102,18 +112,18 @@
       bottom: 24px;
       right: 24px;
       z-index: 800;
-      width: 48px;
-      height: 48px;
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
       background: var(--t-primary);
-      color: #ffffff;
-      border: 2px solid #ffffff;
+      color: var(--t-accent-gold);
+      border: 2px solid var(--t-accent-gold);
       box-shadow: 0 4px 16px rgba(0,0,0,0.25);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       transition: all 0.2s ease;
     }
 
@@ -138,10 +148,11 @@
       border: 1px solid var(--t-card-border);
       border-radius: 12px;
       padding: 12px 6px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      box-shadow: 0 3px 10px rgba(12, 59, 46, 0.04);
+      border-bottom: 2px solid var(--t-accent-gold);
     }
     .countdown-num {
-      font-size: 1.4rem;
+      font-size: 1.45rem;
       font-weight: 800;
       color: var(--t-primary);
       font-family: var(--t-font-title);
@@ -154,62 +165,53 @@
       margin-top: 2px;
     }
 
-    /* Couple Profiles */
-    .couple-avatar {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto 16px;
-      border: 4px solid var(--t-accent-gold);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-      display: block;
-    }
-
     /* Story Timeline */
     .story-item {
       text-align: left;
       border-left: 2px solid var(--t-accent-gold);
-      padding-left: 16px;
-      margin-left: 20px;
-      margin-bottom: 20px;
+      padding-left: 18px;
+      margin-left: 16px;
+      margin-bottom: 22px;
       position: relative;
     }
     .story-item::before {
       content: '';
       position: absolute;
-      left: -7px;
-      top: 4px;
-      width: 12px;
-      height: 12px;
+      left: -8px;
+      top: 3px;
+      width: 14px;
+      height: 14px;
       border-radius: 50%;
       background: var(--t-accent);
+      border: 2px solid var(--t-bg);
     }
 
     /* Gallery Grid */
     .gallery-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 16px;
+      gap: 12px;
+      margin-top: 18px;
     }
     .gallery-img {
       width: 100%;
-      height: 150px;
+      height: 160px;
       object-fit: cover;
-      border-radius: 12px;
+      border-radius: 36px 36px 12px 12px; /* Arch shape */
+      border: 1px solid var(--t-card-border);
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
     .gallery-img:hover {
       transform: scale(1.02);
+      box-shadow: 0 6px 16px rgba(12, 59, 46, 0.15);
     }
 
     /* Lightbox Modal */
     .lightbox {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.9);
+      background: rgba(7, 37, 29, 0.95);
       z-index: 2000;
       display: none;
       align-items: center;
@@ -220,197 +222,300 @@
     .lightbox img {
       max-width: 90vw;
       max-height: 85vh;
-      border-radius: 10px;
+      border-radius: 12px;
+      border: 2px solid var(--t-accent-gold);
     }
   </style>
 </head>
-<body data-theme="islami-emerald">
+<body data-theme="islamic-elegant">
 
-  <!-- COVER / LOCK SCREEN (RULE 10: TAMU LANGSUNG KE UNDANGAN) -->
+  <!-- ========================================================================
+       SECTION 3: COVER / LOCK SCREEN (ISLAMIC ELEGANT)
+       ======================================================================== -->
   <div class="cover-overlay" id="coverOverlay">
-    <div style="margin-top: 20px;">
-      <div class="cover-badge">WALIMATUL 'URS</div>
-      <h1 class="cover-names" id="coverTitle">Andi & Sinta</h1>
-      <p id="coverEventDate" style="font-size: 0.95rem; opacity: 0.9;">Minggu, 25 Oktober 2026</p>
+    <div style="margin-top: 15px; width: 100%;">
+      <!-- Top Islamic Pattern (Thin SVG) -->
+      <svg class="cover-top-ornament" viewBox="0 0 200 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100 2L103 9L110 12L103 15L100 22L97 15L90 12L97 9L100 2Z" fill="#dfb76c"/>
+        <line x1="10" y1="12" x2="85" y2="12" stroke="#dfb76c" stroke-width="1" stroke-dasharray="3 3"/>
+        <circle cx="10" cy="12" r="2.5" fill="#dfb76c"/>
+        <line x1="115" y1="12" x2="190" y2="12" stroke="#dfb76c" stroke-width="1" stroke-dasharray="3 3"/>
+        <circle cx="190" cy="12" r="2.5" fill="#dfb76c"/>
+      </svg>
+
+      <!-- Bismillah Arab di Cover -->
+      <div class="cover-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+      <div class="cover-badge">THE WEDDING OF</div>
+      <h1 class="cover-names" id="coverTitle">Ahmad & Aisyah</h1>
+      <p id="coverEventDate" style="font-size: 0.95rem; opacity: 0.9; color: var(--t-accent-light, #faf5ea);">Sabtu, 12 Desember 2026</p>
     </div>
 
-    <!-- Personalized Guest Badge (RULE 6) -->
+    <!-- Personalized Guest Badge (RULE 6 & 10) -->
     <div class="cover-guest-box">
       <div class="cover-guest-label">Kepada Yth. Bapak/Ibu/Saudara/i:</div>
       <div class="cover-guest-name" id="coverGuestName">Tamu Undangan</div>
-      <div style="font-size: 0.8rem; opacity: 0.8;" id="coverGuestCategory">Tamu Terhormat</div>
+      <div style="font-size: 0.82rem; opacity: 0.85; color: var(--t-accent-gold);" id="coverGuestCategory">di Tempat</div>
     </div>
 
     <div>
       <button type="button" class="btn-open-invitation" id="btnOpenInvitation">
         <span>✉️</span> BUKA UNDANGAN
       </button>
-      <div style="font-size: 0.75rem; opacity: 0.7; margin-top: 12px;">*Sentuh untuk membuka undangan</div>
+      <div style="font-size: 0.75rem; opacity: 0.75; margin-top: 14px; letter-spacing: 0.5px;">*Sentuh untuk membuka undangan</div>
     </div>
   </div>
 
-  <!-- FLOATING MUSIC PLAYER -->
-  <button type="button" class="music-btn" id="musicToggleBtn" title="Putar/Hentikan Musik">
-    🎵
+  <!-- FLOATING MUSIC PLAYER (RULE 15) -->
+  <button type="button" class="music-btn" id="musicToggleBtn" title="Putar / Jeda Musik">
+    <span id="musicIcon">▶</span>
   </button>
   <audio id="bgAudio" loop preload="auto"></audio>
 
-  <!-- MAIN INVITATION CONTENT WRAPPER -->
-  <div class="theme-container" id="invitationContent">
+  <!-- ========================================================================
+       MAIN INVITATION CONTAINER (MOBILE-FIRST)
+       ======================================================================== -->
+  <div class="theme-container islamic-bg-pattern" id="invitationContent">
 
-    <!-- HERO SECTION -->
-    <section class="t-section">
-      <div style="font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; color: var(--t-accent); font-weight: 700;">
-        The Wedding Of
+    <!-- HERO & OPENING SECTION (RULE 5) -->
+    <section class="t-section" id="sectionHero">
+      <!-- Islamic Pattern Banner -->
+      <svg class="islamic-header-pattern" viewBox="0 0 200 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100 2L103 9L110 12L103 15L100 22L97 15L90 12L97 9L100 2Z" fill="var(--t-accent)"/>
+        <line x1="15" y1="12" x2="85" y2="12" stroke="var(--t-accent)" stroke-width="1" stroke-dasharray="2 3"/>
+        <line x1="115" y1="12" x2="185" y2="12" stroke="var(--t-accent)" stroke-width="1" stroke-dasharray="2 3"/>
+      </svg>
+
+      <div id="bismillahBlock">
+        <div class="bismillah-text">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
       </div>
-      <h1 class="t-title" id="heroTitle" style="font-size: 2.2rem; margin: 10px 0 6px;">Andi & Sinta</h1>
-      <div class="t-ornament"></div>
-      <p style="color: var(--t-text-muted); font-size: 0.95rem;" id="heroDate">25 Oktober 2026</p>
 
-      <!-- COUNTDOWN -->
-      <div class="countdown-grid" id="countdownGrid">
-        <div class="countdown-box">
-          <div class="countdown-num" id="cdDays">00</div>
-          <div class="countdown-lbl">Hari</div>
-        </div>
-        <div class="countdown-box">
-          <div class="countdown-num" id="cdHours">00</div>
-          <div class="countdown-lbl">Jam</div>
-        </div>
-        <div class="countdown-box">
-          <div class="countdown-num" id="cdMinutes">00</div>
-          <div class="countdown-lbl">Menit</div>
-        </div>
-        <div class="countdown-box">
-          <div class="countdown-num" id="cdSeconds">00</div>
-          <div class="countdown-lbl">Detik</div>
+      <div style="margin-top: 12px;">
+        <span class="gold-badge">Walimatul 'Urs</span>
+      </div>
+
+      <h2 id="salamOpeningEl" style="font-size: 1.15rem; font-weight: 700; color: var(--t-primary); margin: 10px 0 8px;">
+        Assalamu'alaikum Warahmatullahi Wabarakatuh
+      </h2>
+
+      <p id="openingTextEl" style="font-size: 0.88rem; color: var(--t-text-muted); line-height: 1.6; max-width: 400px; margin: 0 auto;">
+        Dengan memohon rahmat dan ridho Allah Subhanahu Wa Ta'ala, kami bermaksud menyelenggarakan syukuran pernikahan putra-putri kami:
+      </p>
+
+      <h1 class="t-title" id="heroTitle" style="font-size: 2.2rem; margin: 18px 0 6px;">Ahmad & Aisyah</h1>
+      
+      <!-- Islamic Divider -->
+      <div class="islamic-divider">
+        <div class="line"></div>
+        <div class="star">✦</div>
+        <div class="line reverse"></div>
+      </div>
+
+      <p style="color: var(--t-primary); font-weight: 600; font-size: 0.95rem;" id="heroDate">12 Desember 2026</p>
+
+      <!-- COUNTDOWN (RULE 9) -->
+      <div id="sectionCountdown" style="margin-top: 24px;">
+        <div class="countdown-grid" id="countdownGrid">
+          <div class="countdown-box">
+            <div class="countdown-num" id="cdDays">00</div>
+            <div class="countdown-lbl">Hari</div>
+          </div>
+          <div class="countdown-box">
+            <div class="countdown-num" id="cdHours">00</div>
+            <div class="countdown-lbl">Jam</div>
+          </div>
+          <div class="countdown-box">
+            <div class="countdown-num" id="cdMinutes">00</div>
+            <div class="countdown-lbl">Menit</div>
+          </div>
+          <div class="countdown-box">
+            <div class="countdown-num" id="cdSeconds">00</div>
+            <div class="countdown-lbl">Detik</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- QUOTE SECTION -->
-    <section class="t-section t-section-alt">
+    <!-- AYAT / KUTIPAN SUCI (RULE 6) -->
+    <section class="t-section t-section-alt" id="quoteSection">
       <div style="max-width: 400px; margin: 0 auto;">
-        <div style="font-size: 2.5rem; line-height: 1; color: var(--t-accent-gold); margin-bottom: 8px;">“</div>
-        <p id="quoteTextEl" style="font-style: italic; font-size: 0.95rem; line-height: 1.6; color: var(--t-text); margin-bottom: 12px;">
-          Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu...
+        <!-- Delicate Islamic Arch Top Ornament -->
+        <div style="font-size: 1.8rem; color: var(--t-accent-gold); margin-bottom: 8px;">۞</div>
+        
+        <div id="quoteArabicEl" class="arabic-quote">
+          وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
+        </div>
+
+        <p id="quoteTextEl" style="font-style: italic; font-size: 0.92rem; line-height: 1.65; color: var(--t-text); margin-bottom: 14px;">
+          "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri, supaya kamu merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang."
         </p>
-        <div id="quoteSourceEl" style="font-weight: 700; font-size: 0.85rem; color: var(--t-primary);">QS. Ar-Rum: 21</div>
+
+        <div id="quoteSourceEl" style="font-weight: 700; font-size: 0.85rem; color: var(--t-accent-dark, #9d7b37); letter-spacing: 0.5px;">
+          QS. Ar-Rum: 21
+        </div>
       </div>
     </section>
 
-    <!-- COUPLE SECTION -->
-    <section class="t-section">
-      <h2 class="t-title" style="font-size: 1.6rem;">Mempelai</h2>
-      <div class="t-subtitle">Bahagia</div>
-      <div class="t-ornament"></div>
+    <!-- MEMPELAI / COUPLE SECTION (RULE 7: SYMMETRICAL ARCH FRAMES) -->
+    <section class="t-section" id="coupleSection">
+      <div class="gold-badge">Mempelai</div>
+      <h2 class="t-title" style="font-size: 1.8rem;">Mempelai Bahagia</h2>
+      <div class="t-subtitle">The Couple</div>
+      
+      <div class="islamic-divider">
+        <div class="line"></div>
+        <div class="star">✦</div>
+        <div class="line reverse"></div>
+      </div>
 
-      <!-- Groom -->
-      <div class="t-card" style="margin-top: 20px;">
-        <img id="groomPhotoEl" class="couple-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400" alt="Groom">
-        <h3 id="groomNameEl" class="t-title" style="font-size: 1.3rem;">Muhammad Andi Pratama</h3>
-        <p id="groomParentsEl" style="font-size: 0.85rem; color: var(--t-text-muted); margin-top: 6px; line-height: 1.4;">
-          Putra pertama dari Bpk. Bambang & Ibu Siti
+      <!-- THE BRIDE -->
+      <div class="t-card" style="margin-top: 16px;">
+        <div class="arch-frame">
+          <img id="bridePhotoEl" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600" alt="Mempelai Wanita">
+        </div>
+        <span style="font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--t-accent); font-weight: 700;">THE BRIDE</span>
+        <h3 id="brideNameEl" class="t-title" style="font-size: 1.4rem; margin: 4px 0;">Aisyah Rahma</h3>
+        <p id="brideParentsEl" style="font-size: 0.85rem; color: var(--t-text-muted); margin-top: 6px; line-height: 1.5;">
+          Putri kedua dari Bpk. H. Rahmat Hidayat & Ibu Hj. Nur Hasanah
         </p>
       </div>
 
-      <div style="font-size: 2rem; color: var(--t-accent); font-family: var(--t-font-script); margin: 10px 0;">&</div>
+      <div style="font-size: 2.2rem; color: var(--t-accent-gold); font-family: var(--t-font-script); margin: 8px 0;">&</div>
 
-      <!-- Bride -->
+      <!-- THE GROOM -->
       <div class="t-card">
-        <img id="bridePhotoEl" class="couple-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400" alt="Bride">
-        <h3 id="brideNameEl" class="t-title" style="font-size: 1.3rem;">Siti Nur Aisyah</h3>
-        <p id="brideParentsEl" style="font-size: 0.85rem; color: var(--t-text-muted); margin-top: 6px; line-height: 1.4;">
-          Putri kedua dari Bpk. H. Rahmat & Ibu Hj. Rohana
+        <div class="arch-frame">
+          <img id="groomPhotoEl" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600" alt="Mempelai Pria">
+        </div>
+        <span style="font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--t-accent); font-weight: 700;">THE GROOM</span>
+        <h3 id="groomNameEl" class="t-title" style="font-size: 1.4rem; margin: 4px 0;">Ahmad Fadillah</h3>
+        <p id="groomParentsEl" style="font-size: 0.85rem; color: var(--t-text-muted); margin-top: 6px; line-height: 1.5;">
+          Putra pertama dari Bpk. Ir. H. Mansyur & Ibu Hj. Siti Fatimah
         </p>
       </div>
     </section>
 
-    <!-- EVENTS SECTION (AKAD & RESEPSI) -->
-    <section class="t-section t-section-alt">
-      <h2 class="t-title" style="font-size: 1.6rem;">Rangkaian Acara</h2>
-      <div class="t-subtitle">Waktu & Tempat</div>
-      <div class="t-ornament"></div>
+    <!-- RANGKAIAN ACARA (RULE 8: ARCH SHAPED EVENT CARDS) -->
+    <section class="t-section t-section-alt" id="eventsSection">
+      <div class="gold-badge">Waktu & Tempat</div>
+      <h2 class="t-title" style="font-size: 1.8rem;">Rangkaian Acara</h2>
+      <div class="t-subtitle">Agenda Ibadah</div>
 
-      <!-- Akad Nikah -->
-      <div class="t-card">
-        <div style="font-size: 1.8rem; margin-bottom: 6px;">💍</div>
-        <h3 class="t-title" style="font-size: 1.25rem;">Akad Nikah</h3>
-        <p id="akadDateEl" style="font-weight: 700; color: var(--t-accent); margin: 8px 0 4px; font-size: 1rem;">
-          Minggu, 25 Oktober 2026
-        </p>
-        <p id="akadTimeEl" style="font-size: 0.9rem; color: var(--t-text-muted); font-weight: 600;">
-          08.00 - 10.00 WIB
-        </p>
-        <hr style="border: 0; border-top: 1px dashed var(--t-card-border); margin: 14px 0;">
-        <h4 id="akadLocationEl" style="font-size: 1rem; font-weight: 700; color: var(--t-text);">
-          Masjid Agung Al-Falah
-        </h4>
-        <p id="akadAddressEl" style="font-size: 0.85rem; color: var(--t-text-muted); margin: 6px 0 16px; line-height: 1.4;">
-          Jl. Pahlawan No. 45, Surabaya
-        </p>
-        <a id="akadMapBtn" href="#" target="_blank" class="t-btn" style="font-size: 0.85rem; padding: 10px 20px;">
-          📍 Buka Google Maps
-        </a>
+      <div class="islamic-divider">
+        <div class="line"></div>
+        <div class="star">✦</div>
+        <div class="line reverse"></div>
       </div>
 
-      <!-- Resepsi -->
-      <div class="t-card" style="margin-top: 24px;">
-        <div style="font-size: 1.8rem; margin-bottom: 6px;">🎉</div>
-        <h3 class="t-title" style="font-size: 1.25rem;">Resepsi Pernikahan</h3>
-        <p id="resepsiDateEl" style="font-weight: 700; color: var(--t-accent); margin: 8px 0 4px; font-size: 1rem;">
-          Minggu, 25 Oktober 2026
-        </p>
-        <p id="resepsiTimeEl" style="font-size: 0.9rem; color: var(--t-text-muted); font-weight: 600;">
-          11.00 - 14.00 WIB
-        </p>
-        <hr style="border: 0; border-top: 1px dashed var(--t-card-border); margin: 14px 0;">
-        <h4 id="resepsiLocationEl" style="font-size: 1rem; font-weight: 700; color: var(--t-text);">
-          Grand Ballroom Hotel Majapahit
-        </h4>
-        <p id="resepsiAddressEl" style="font-size: 0.85rem; color: var(--t-text-muted); margin: 6px 0 16px; line-height: 1.4;">
-          Jl. Tunjungan No. 65, Surabaya
-        </p>
-        <a id="resepsiMapBtn" href="#" target="_blank" class="t-btn" style="font-size: 0.85rem; padding: 10px 20px;">
-          📍 Buka Google Maps
-        </a>
+      <!-- Container for Event Cards (Supports standard Akad/Resepsi + Custom Events) -->
+      <div id="eventsContainer">
+        <!-- Akad Nikah -->
+        <div class="arch-card">
+          <div class="arch-card-icon">💍</div>
+          <h3 class="t-title" style="font-size: 1.35rem;">AKAD NIKAH</h3>
+          <p id="akadDateEl" style="font-weight: 700; color: var(--t-accent); margin: 8px 0 4px; font-size: 1.05rem;">
+            Sabtu, 12 Desember 2026
+          </p>
+          <p id="akadTimeEl" style="font-size: 0.92rem; color: var(--t-primary); font-weight: 600;">
+            08.00 WIB
+          </p>
+          <hr style="border: 0; border-top: 1px dashed var(--t-card-border); margin: 16px 0;">
+          <h4 id="akadLocationEl" style="font-size: 1.05rem; font-weight: 700; color: var(--t-text);">
+            Masjid Raya Al-Ikhlas
+          </h4>
+          <p id="akadAddressEl" style="font-size: 0.86rem; color: var(--t-text-muted); margin: 6px 0 18px; line-height: 1.45;">
+            Jl. Mawar Melati No. 12, Jakarta Selatan
+          </p>
+          <a id="akadMapBtn" href="#" target="_blank" class="t-btn" style="font-size: 0.85rem; padding: 10px 24px;">
+            📍 LIHAT LOKASI
+          </a>
+        </div>
+
+        <!-- Resepsi -->
+        <div class="arch-card">
+          <div class="arch-card-icon">🏛️</div>
+          <h3 class="t-title" style="font-size: 1.35rem;">RESEPSI</h3>
+          <p id="resepsiDateEl" style="font-weight: 700; color: var(--t-accent); margin: 8px 0 4px; font-size: 1.05rem;">
+            Sabtu, 12 Desember 2026
+          </p>
+          <p id="resepsiTimeEl" style="font-size: 0.92rem; color: var(--t-primary); font-weight: 600;">
+            11.00 WIB
+          </p>
+          <hr style="border: 0; border-top: 1px dashed var(--t-card-border); margin: 16px 0;">
+          <h4 id="resepsiLocationEl" style="font-size: 1.05rem; font-weight: 700; color: var(--t-text);">
+            Grand Ballroom Sasana Kriya
+          </h4>
+          <p id="resepsiAddressEl" style="font-size: 0.86rem; color: var(--t-text-muted); margin: 6px 0 18px; line-height: 1.45;">
+            Taman Mini Indonesia Indah, Jakarta Timur
+          </p>
+          <a id="resepsiMapBtn" href="#" target="_blank" class="t-btn" style="font-size: 0.85rem; padding: 10px 24px;">
+            📍 LIHAT LOKASI
+          </a>
+        </div>
       </div>
     </section>
 
-    <!-- LOVE STORY SECTION -->
+    <!-- KISAH CINTA / STORY (RULE 11: ISLAMIC TIMELINE) -->
     <section class="t-section" id="storySection">
-      <h2 class="t-title" style="font-size: 1.6rem;">Kisah Cinta</h2>
-      <div class="t-subtitle">Perjalanan Kami</div>
-      <div class="t-ornament"></div>
+      <div class="gold-badge">Kisah Kami</div>
+      <h2 class="t-title" style="font-size: 1.8rem;">Cerita Cinta</h2>
+      <div class="t-subtitle">Perjalanan Menuju Halal</div>
+
+      <div class="islamic-divider">
+        <div class="line"></div>
+        <div class="star">✦</div>
+        <div class="line reverse"></div>
+      </div>
+
       <div id="storyTimeline" style="margin-top: 20px;"></div>
     </section>
 
-    <!-- GALLERY SECTION -->
+    <!-- GALERI FOTO (RULE 10: ARCH FRAMED PHOTOS & LIGHTBOX) -->
     <section class="t-section t-section-alt" id="gallerySection">
-      <h2 class="t-title" style="font-size: 1.6rem;">Galeri Foto</h2>
-      <div class="t-subtitle">Momen Bahagia</div>
-      <div class="t-ornament"></div>
+      <div class="gold-badge">Dokumentasi</div>
+      <h2 class="t-title" style="font-size: 1.8rem;">Galeri Foto</h2>
+      <div class="t-subtitle">Momen Berharga</div>
+
+      <div class="islamic-divider">
+        <div class="line"></div>
+        <div class="star">✦</div>
+        <div class="line reverse"></div>
+      </div>
+
       <div class="gallery-grid" id="galleryGrid"></div>
     </section>
 
-    <!-- DIGITAL GIFT / AMPLOP DIGITAL -->
+    <!-- WEDDING GIFT / TANDA KASIH (RULE 14) -->
     <section class="t-section" id="giftSection">
-      <h2 class="t-title" style="font-size: 1.6rem;">Tanda Kasih</h2>
-      <div class="t-subtitle">Amplop Digital</div>
-      <div class="t-ornament"></div>
-      <p style="font-size: 0.85rem; color: var(--t-text-muted); max-width: 360px; margin: 0 auto 20px;">
-        Doa restu Anda adalah karunia terindah bagi kami. Namun jika Anda berkenan memberikan tanda kasih, dapat melalui rekening berikut:
+      <div class="gold-badge">Tanda Kasih</div>
+      <h2 class="t-title" style="font-size: 1.8rem;">Wedding Gift</h2>
+      <div class="t-subtitle">Doa & Restu</div>
+
+      <div class="islamic-divider">
+        <div class="line"></div>
+        <div class="star">✦</div>
+        <div class="line reverse"></div>
+      </div>
+
+      <p style="font-size: 0.88rem; color: var(--t-text-muted); max-width: 380px; margin: 0 auto 24px; line-height: 1.6;">
+        Doa dan kehadiran Anda merupakan hadiah terindah bagi kami. Namun jika Anda berkenan memberikan tanda kasih secara digital, dapat disalurkan melalui:
       </p>
+
       <div id="giftAccounts"></div>
     </section>
 
-    <!-- RSVP SECTION -->
+    <!-- RSVP SECTION (RULE 12: CLEAN ARCH CARD) -->
     <section class="t-section t-section-alt" id="rsvpSection">
-      <h2 class="t-title" style="font-size: 1.6rem;">Konfirmasi Kehadiran</h2>
+      <div class="gold-badge">Kehadiran</div>
+      <h2 class="t-title" style="font-size: 1.8rem;">Konfirmasi Kehadiran</h2>
       <div class="t-subtitle">RSVP</div>
-      <div class="t-ornament"></div>
 
-      <div class="t-card" style="text-align: left;">
+      <div class="islamic-divider">
+        <div class="line"></div>
+        <div class="star">✦</div>
+        <div class="line reverse"></div>
+      </div>
+
+      <div class="t-card" style="text-align: left; border-top: 3px solid var(--t-accent-gold);">
         <form id="rsvpForm">
           <div class="form-group">
             <label class="form-label">Nama Tamu</label>
@@ -419,13 +524,13 @@
           <div class="form-group">
             <label class="form-label">Konfirmasi Kehadiran</label>
             <select id="rsvpStatus" class="form-select">
-              <option value="hadir">Hadir</option>
-              <option value="tidak_hadir">Tidak Dapat Hadir</option>
-              <option value="ragu">Masih Ragu</option>
+              <option value="hadir">○ Hadir</option>
+              <option value="tidak_hadir">○ Tidak Hadir</option>
+              <option value="ragu">○ Masih Ragu</option>
             </select>
           </div>
           <div class="form-group" id="rsvpPaxGroup">
-            <label class="form-label">Jumlah Orang</label>
+            <label class="form-label">Jumlah Tamu</label>
             <select id="rsvpPax" class="form-select">
               <option value="1">1 Orang</option>
               <option value="2">2 Orang</option>
@@ -434,28 +539,34 @@
             </select>
           </div>
           <button type="submit" id="btnSubmitRsvp" class="t-btn" style="width: 100%; justify-content: center; margin-top: 10px;">
-            Kirim Konfirmasi Kehadiran
+            Kirim Konfirmasi
           </button>
         </form>
       </div>
     </section>
 
-    <!-- WISHES & PRAYERS SECTION -->
-    <section class="t-section">
-      <h2 class="t-title" style="font-size: 1.6rem;">Ucapan & Doa</h2>
-      <div class="t-subtitle">Doa Restu</div>
-      <div class="t-ornament"></div>
+    <!-- UCAPAN & DOA RESTU (RULE 13) -->
+    <section class="t-section" id="wishesSection">
+      <div class="gold-badge">Buku Tamu</div>
+      <h2 class="t-title" style="font-size: 1.8rem;">Ucapan & Doa</h2>
+      <div class="t-subtitle">Doa Restu Tamu</div>
+
+      <div class="islamic-divider">
+        <div class="line"></div>
+        <div class="star">✦</div>
+        <div class="line reverse"></div>
+      </div>
 
       <!-- Wish Form -->
-      <div class="t-card" style="text-align: left;">
+      <div class="t-card" style="text-align: left; border-top: 3px solid var(--t-accent-gold);">
         <form id="wishForm">
           <div class="form-group">
             <label class="form-label">Nama Pengirim</label>
             <input type="text" id="wishSenderName" class="form-input" required>
           </div>
           <div class="form-group">
-            <label class="form-label">Ucapan & Doa Restu</label>
-            <textarea id="wishMessage" class="form-textarea" rows="3" placeholder="Tuliskan ucapan dan doa terbaik Anda untuk kedua mempelai..." required></textarea>
+            <label class="form-label">Ucapan & Doa Terbaik</label>
+            <textarea id="wishMessage" class="form-textarea" rows="3" placeholder="Tuliskan ucapan dan doa barakah Anda untuk kedua mempelai..." required></textarea>
           </div>
           <button type="submit" id="btnSubmitWish" class="t-btn" style="width: 100%; justify-content: center;">
             ✉️ Kirim Doa & Ucapan
@@ -467,11 +578,32 @@
       <div id="wishesList" style="margin-top: 20px; text-align: left;"></div>
     </section>
 
-    <!-- FOOTER -->
-    <footer style="padding: 40px 20px 80px; text-align: center; color: var(--t-text-muted); font-size: 0.85rem;">
-      <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Anda berkenan hadir.</p>
-      <div style="font-family: var(--t-font-title); font-size: 1.2rem; color: var(--t-primary); margin-top: 14px; font-weight: 700;" id="footerCouple">
-        Andi & Sinta
+    <!-- ========================================================================
+         SECTION 16: PENUTUP KHIDMAT
+         ======================================================================== -->
+    <footer style="padding: 50px 24px 90px; text-align: center; background: var(--t-bg-alt, #f2ece2); border-top: 1px solid var(--t-card-border);">
+      <div style="font-size: 1.8rem; color: var(--t-accent); margin-bottom: 12px;">۞</div>
+      
+      <h3 id="closingTitleEl" class="t-title" style="font-size: 1.4rem; margin-bottom: 8px;">
+        Jazakumullahu Khairan Katsiran
+      </h3>
+      
+      <p id="closingTextEl" style="font-size: 0.88rem; color: var(--t-text-muted); line-height: 1.6; max-width: 380px; margin: 0 auto 16px;">
+        Terima kasih atas doa dan kehadiran Anda. Semoga Allah Subhanahu Wa Ta'ala senantiasa melimpahkan berkah dan rahmat-Nya kepada kita semua.
+      </p>
+
+      <div id="closingSalamEl" style="font-weight: 700; color: var(--t-primary); font-size: 1rem; margin-bottom: 16px;">
+        Wassalamu'alaikum Warahmatullahi Wabarakatuh
+      </div>
+
+      <div class="islamic-divider" style="margin: 12px auto;">
+        <div class="line"></div>
+        <div class="star">✦</div>
+        <div class="line reverse"></div>
+      </div>
+
+      <div style="font-family: var(--t-font-title); font-size: 1.4rem; color: var(--t-primary); font-weight: 700;" id="footerCouple">
+        Ahmad & Aisyah
       </div>
     </footer>
 
@@ -479,7 +611,7 @@
 
   <!-- Lightbox Modal -->
   <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <img id="lightboxImg" src="" alt="Gallery Preview">
+    <img id="lightboxImg" src="" alt="Foto Galeri Penuh">
   </div>
 
   <div class="toast-container" id="toastContainer"></div>
@@ -487,13 +619,11 @@
   <script>
     // Extract slug and guestToken from URL pathname: /u/:slug/:guestToken?
     const pathParts = window.location.pathname.split('/').filter(Boolean);
-    // pathParts[0] = 'u', pathParts[1] = slug, pathParts[2] = guestToken (optional)
-    const slug = pathParts[1] || 'wedding-andi-sinta';
+    const slug = pathParts[1] || 'wedding-ahmad-aisyah';
     const guestToken = pathParts[2] || '';
 
     let invData = null;
     let guestData = null;
-    let audioPlayed = false;
 
     function showToast(msg, type = 'success') {
       const c = document.getElementById('toastContainer');
@@ -538,32 +668,60 @@
         guestData = data.guest;
 
         // Apply theme dynamically to body
-        document.body.setAttribute('data-theme', invData.theme_id || 'islami-emerald');
+        document.body.setAttribute('data-theme', invData.theme_id || 'islamic-elegant');
 
         // Document Title
-        document.title = invData.title || 'Undangan Pernikahan';
+        document.title = invData.title || `The Wedding of ${invData.groom_nickname || 'Ahmad'} & ${invData.bride_nickname || 'Aisyah'}`;
 
-        // Cover setup (RULE 6 & 10)
-        document.getElementById('coverTitle').innerText = `${invData.groom_nickname || 'Pria'} & ${invData.bride_nickname || 'Wanita'}`;
+        // Cover setup (RULE 3, 6, 17)
+        document.getElementById('coverTitle').innerText = `${invData.groom_nickname || 'Ahmad'} & ${invData.bride_nickname || 'Aisyah'}`;
         document.getElementById('coverEventDate').innerText = invData.akad_date || invData.event_date || '';
         document.getElementById('coverGuestName').innerText = guestData.name || 'Tamu Undangan';
-        document.getElementById('coverGuestCategory').innerText = guestData.category || 'Tamu Terhormat';
+        document.getElementById('coverGuestCategory').innerText = guestData.category ? `${guestData.category} - di Tempat` : 'di Tempat';
 
         // Hero setup
-        document.getElementById('heroTitle').innerText = `${invData.groom_nickname || 'Pria'} & ${invData.bride_nickname || 'Wanita'}`;
+        document.getElementById('heroTitle').innerText = `${invData.groom_nickname || 'Ahmad'} & ${invData.bride_nickname || 'Aisyah'}`;
         document.getElementById('heroDate').innerText = invData.akad_date || '';
-        document.getElementById('footerCouple').innerText = `${invData.groom_nickname || 'Pria'} & ${invData.bride_nickname || 'Wanita'}`;
+        document.getElementById('footerCouple').innerText = `${invData.groom_nickname || 'Ahmad'} & ${invData.bride_nickname || 'Aisyah'}`;
 
-        // Audio music source
-        if (invData.music_url) {
-          document.getElementById('bgAudio').src = invData.music_url;
+        // Bismillah & Salam Opening (RULE 5)
+        if (invData.bismillah_enabled === 0) {
+          document.getElementById('bismillahBlock').style.display = 'none';
+        } else {
+          document.getElementById('bismillahBlock').style.display = 'block';
         }
 
-        // Quotes
-        document.getElementById('quoteTextEl').innerText = invData.quote_text || '';
-        document.getElementById('quoteSourceEl').innerText = invData.quote_source || '';
+        if (invData.salam_opening) {
+          document.getElementById('salamOpeningEl').innerText = invData.salam_opening;
+        }
+        if (invData.opening_text) {
+          document.getElementById('openingTextEl').innerText = invData.opening_text;
+        }
 
-        // Groom & Bride profiles
+        // Section Countdown toggle
+        if (invData.section_countdown_enabled === 0) {
+          document.getElementById('sectionCountdown').style.display = 'none';
+        } else {
+          document.getElementById('sectionCountdown').style.display = 'block';
+          initCountdown(invData.event_date);
+        }
+
+        // Ayat / Quote Section toggle (RULE 6)
+        if (invData.quote_enabled === 0) {
+          document.getElementById('quoteSection').style.display = 'none';
+        } else {
+          document.getElementById('quoteSection').style.display = 'block';
+          if (invData.quote_arabic) {
+            document.getElementById('quoteArabicEl').innerText = invData.quote_arabic;
+            document.getElementById('quoteArabicEl').style.display = 'block';
+          } else {
+            document.getElementById('quoteArabicEl').style.display = 'none';
+          }
+          document.getElementById('quoteTextEl').innerText = invData.quote_text ? `"${invData.quote_text}"` : '';
+          document.getElementById('quoteSourceEl').innerText = invData.quote_source || '';
+        }
+
+        // Couple Section (RULE 7)
         document.getElementById('groomNameEl').innerText = invData.groom_name || '';
         document.getElementById('groomParentsEl').innerText = invData.groom_parents || '';
         if (invData.groom_photo) document.getElementById('groomPhotoEl').src = invData.groom_photo;
@@ -572,49 +730,159 @@
         document.getElementById('brideParentsEl').innerText = invData.bride_parents || '';
         if (invData.bride_photo) document.getElementById('bridePhotoEl').src = invData.bride_photo;
 
-        // Events
-        document.getElementById('akadDateEl').innerText = invData.akad_date || '';
-        document.getElementById('akadTimeEl').innerText = invData.akad_time || '';
-        document.getElementById('akadLocationEl').innerText = invData.akad_location || '';
-        document.getElementById('akadAddressEl').innerText = invData.akad_address || '';
-        document.getElementById('akadMapBtn').href = invData.akad_map_url || '#';
+        // Events Section (RULE 8)
+        renderEvents(invData);
 
-        document.getElementById('resepsiDateEl').innerText = invData.resepsi_date || '';
-        document.getElementById('resepsiTimeEl').innerText = invData.resepsi_time || '';
-        document.getElementById('resepsiLocationEl').innerText = invData.resepsi_location || '';
-        document.getElementById('resepsiAddressEl').innerText = invData.resepsi_address || '';
-        document.getElementById('resepsiMapBtn').href = invData.resepsi_map_url || '#';
-
-        // Countdown Timer
-        initCountdown(invData.event_date);
-
-        // Love story
-        renderLoveStory(invData.love_story);
-
-        // Gallery
-        renderGallery(invData.gallery_photos);
-
-        // Bank Accounts / Gifts
-        renderGifts(invData.bank_accounts);
-
-        // RSVP initialization
-        document.getElementById('rsvpName').value = guestData.name;
-        if (guestData.attendance_status) {
-          document.getElementById('rsvpStatus').value = guestData.attendance_status;
-        }
-        if (guestData.total_pax) {
-          document.getElementById('rsvpPax').value = guestData.total_pax;
+        // Story Section toggle (RULE 11)
+        if (invData.section_story_enabled === 0) {
+          document.getElementById('storySection').style.display = 'none';
+        } else {
+          document.getElementById('storySection').style.display = 'block';
+          renderLoveStory(invData.love_story);
         }
 
-        // Wish Sender Name
-        document.getElementById('wishSenderName').value = guestData.name !== 'Tamu Undangan' ? guestData.name : '';
+        // Gallery Section toggle (RULE 10)
+        if (invData.section_gallery_enabled === 0) {
+          document.getElementById('gallerySection').style.display = 'none';
+        } else {
+          document.getElementById('gallerySection').style.display = 'block';
+          renderGallery(invData.gallery_photos);
+        }
 
-        // Wishes stream
-        renderWishes(data.wishes || []);
+        // Gift Section toggle (RULE 14)
+        if (invData.section_gift_enabled === 0) {
+          document.getElementById('giftSection').style.display = 'none';
+        } else {
+          document.getElementById('giftSection').style.display = 'block';
+          renderGifts(invData.bank_accounts);
+        }
+
+        // RSVP Section toggle (RULE 12)
+        if (invData.section_rsvp_enabled === 0) {
+          document.getElementById('rsvpSection').style.display = 'none';
+        } else {
+          document.getElementById('rsvpSection').style.display = 'block';
+          document.getElementById('rsvpName').value = guestData.name;
+          if (guestData.attendance_status) {
+            document.getElementById('rsvpStatus').value = guestData.attendance_status;
+          }
+          if (guestData.total_pax) {
+            document.getElementById('rsvpPax').value = guestData.total_pax;
+          }
+        }
+
+        // Wishes Section toggle (RULE 13)
+        if (invData.section_wishes_enabled === 0) {
+          document.getElementById('wishesSection').style.display = 'none';
+        } else {
+          document.getElementById('wishesSection').style.display = 'block';
+          document.getElementById('wishSenderName').value = guestData.name !== 'Tamu Undangan' ? guestData.name : '';
+          renderWishes(data.wishes || []);
+        }
+
+        // Closing Section (RULE 16)
+        if (invData.closing_title) document.getElementById('closingTitleEl').innerText = invData.closing_title;
+        if (invData.closing_text) document.getElementById('closingTextEl').innerText = invData.closing_text;
+        if (invData.closing_salam) document.getElementById('closingSalamEl').innerText = invData.closing_salam;
+
+        // Audio music source (RULE 15)
+        if (invData.music_url) {
+          document.getElementById('bgAudio').src = invData.music_url;
+        }
 
       } catch (err) {
-        showToast('Koneksi terputus saat memuat undangan', 'danger');
+        showToast('Gagal memuat data undangan.', 'danger');
       }
+    }
+
+    // Render Events (Akad, Resepsi, plus any additional events)
+    function renderEvents(inv) {
+      const container = document.getElementById('eventsContainer');
+      let html = '';
+
+      // Primary Akad Card
+      if (inv.akad_date || inv.akad_location) {
+        html += `
+          <div class="arch-card">
+            <div class="arch-card-icon">💍</div>
+            <h3 class="t-title" style="font-size: 1.35rem;">AKAD NIKAH</h3>
+            <p style="font-weight: 700; color: var(--t-accent); margin: 8px 0 4px; font-size: 1.05rem;">
+              ${inv.akad_date || ''}
+            </p>
+            <p style="font-size: 0.92rem; color: var(--t-primary); font-weight: 600;">
+              ${inv.akad_time || ''}
+            </p>
+            <hr style="border: 0; border-top: 1px dashed var(--t-card-border); margin: 16px 0;">
+            <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--t-text);">
+              ${inv.akad_location || ''}
+            </h4>
+            <p style="font-size: 0.86rem; color: var(--t-text-muted); margin: 6px 0 18px; line-height: 1.45;">
+              ${inv.akad_address || ''}
+            </p>
+            <a href="${inv.akad_map_url || '#'}" target="_blank" class="t-btn" style="font-size: 0.85rem; padding: 10px 24px;">
+              📍 LIHAT LOKASI
+            </a>
+          </div>
+        `;
+      }
+
+      // Primary Resepsi Card
+      if (inv.resepsi_date || inv.resepsi_location) {
+        html += `
+          <div class="arch-card">
+            <div class="arch-card-icon">🏛️</div>
+            <h3 class="t-title" style="font-size: 1.35rem;">RESEPSI</h3>
+            <p style="font-weight: 700; color: var(--t-accent); margin: 8px 0 4px; font-size: 1.05rem;">
+              ${inv.resepsi_date || ''}
+            </p>
+            <p style="font-size: 0.92rem; color: var(--t-primary); font-weight: 600;">
+              ${inv.resepsi_time || ''}
+            </p>
+            <hr style="border: 0; border-top: 1px dashed var(--t-card-border); margin: 16px 0;">
+            <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--t-text);">
+              ${inv.resepsi_location || ''}
+            </h4>
+            <p style="font-size: 0.86rem; color: var(--t-text-muted); margin: 6px 0 18px; line-height: 1.45;">
+              ${inv.resepsi_address || ''}
+            </p>
+            <a href="${inv.resepsi_map_url || '#'}" target="_blank" class="t-btn" style="font-size: 0.85rem; padding: 10px 24px;">
+              📍 LIHAT LOKASI
+            </a>
+          </div>
+        `;
+      }
+
+      // Additional Custom Events
+      if (Array.isArray(inv.events_data) && inv.events_data.length > 0) {
+        inv.events_data.forEach(ev => {
+          html += `
+            <div class="arch-card">
+              <div class="arch-card-icon">${ev.icon || '✨'}</div>
+              <h3 class="t-title" style="font-size: 1.35rem;">${ev.title || 'ACARA'}</h3>
+              <p style="font-weight: 700; color: var(--t-accent); margin: 8px 0 4px; font-size: 1.05rem;">
+                ${ev.date || ''}
+              </p>
+              <p style="font-size: 0.92rem; color: var(--t-primary); font-weight: 600;">
+                ${ev.time || ''}
+              </p>
+              <hr style="border: 0; border-top: 1px dashed var(--t-card-border); margin: 16px 0;">
+              <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--t-text);">
+                ${ev.location || ''}
+              </h4>
+              <p style="font-size: 0.86rem; color: var(--t-text-muted); margin: 6px 0 18px; line-height: 1.45;">
+                ${ev.address || ''}
+              </p>
+              ${ev.map_url ? `
+                <a href="${ev.map_url}" target="_blank" class="t-btn" style="font-size: 0.85rem; padding: 10px 24px;">
+                  📍 LIHAT LOKASI
+                </a>
+              ` : ''}
+            </div>
+          `;
+        });
+      }
+
+      container.innerHTML = html;
     }
 
     // Countdown Timer Logic
@@ -649,7 +917,7 @@
       setInterval(update, 1000);
     }
 
-    // Render Love Story
+    // Render Love Story (RULE 11)
     function renderLoveStory(stories) {
       const el = document.getElementById('storyTimeline');
       if (!stories || stories.length === 0) {
@@ -658,14 +926,14 @@
       }
       el.innerHTML = stories.map(s => `
         <div class="story-item">
-          <span style="font-weight: 800; font-size: 0.85rem; color: var(--t-accent);">${s.year}</span>
+          <span style="font-weight: 800; font-size: 0.85rem; color: var(--t-accent); letter-spacing: 0.5px;">${s.year}</span>
           <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--t-primary); margin: 2px 0 4px;">${s.title}</h4>
-          <p style="font-size: 0.85rem; color: var(--t-text-muted); line-height: 1.4;">${s.desc}</p>
+          <p style="font-size: 0.86rem; color: var(--t-text-muted); line-height: 1.5;">${s.desc}</p>
         </div>
       `).join('');
     }
 
-    // Render Gallery
+    // Render Gallery (RULE 10)
     function renderGallery(photos) {
       const el = document.getElementById('galleryGrid');
       if (!photos || photos.length === 0) {
@@ -673,7 +941,7 @@
         return;
       }
       el.innerHTML = photos.map(url => `
-        <img class="gallery-img" src="${url}" alt="Foto Galeri" onclick="openLightbox('${url}')">
+        <img class="gallery-img" src="${url}" alt="Galeri Pernikahan" onclick="openLightbox('${url}')" loading="lazy">
       `).join('');
     }
 
@@ -686,7 +954,7 @@
       document.getElementById('lightbox').classList.remove('active');
     }
 
-    // Render Gifts / Bank Accounts
+    // Render Gifts / Bank Accounts (RULE 14)
     function renderGifts(accounts) {
       const el = document.getElementById('giftAccounts');
       if (!accounts || accounts.length === 0) {
@@ -694,54 +962,54 @@
         return;
       }
       el.innerHTML = accounts.map(acc => `
-        <div class="t-card" style="margin-bottom: 14px;">
-          <strong style="font-size: 1.05rem; color: var(--t-primary);">${acc.bank_name}</strong>
-          <div style="font-family: monospace; font-size: 1.25rem; font-weight: 800; color: var(--t-text); margin: 8px 0;">
+        <div class="t-card" style="margin-bottom: 16px; border-top: 3px solid var(--t-accent-gold);">
+          <strong style="font-size: 1.1rem; color: var(--t-primary);">${acc.bank_name}</strong>
+          <div style="font-family: monospace; font-size: 1.3rem; font-weight: 800; color: var(--t-text); margin: 8px 0; letter-spacing: 1px;">
             ${acc.account_number}
           </div>
-          <div style="font-size: 0.85rem; color: var(--t-text-muted); margin-bottom: 12px;">
-            a.n. ${acc.account_holder}
+          <div style="font-size: 0.88rem; color: var(--t-text-muted); margin-bottom: 14px;">
+            Atas Nama: <strong style="color: var(--t-primary);">${acc.account_holder}</strong>
           </div>
-          <button type="button" onclick="copyText('${acc.account_number}', 'Nomor rekening ${acc.bank_name} disalin!')" class="t-btn" style="font-size: 0.85rem; padding: 8px 20px;">
+          <button type="button" onclick="copyText('${acc.account_number}', 'Nomor rekening ${acc.bank_name} berhasil disalin!')" class="t-btn" style="font-size: 0.85rem; padding: 8px 22px;">
             📋 Salin Nomor Rekening
           </button>
         </div>
       `).join('');
     }
 
-    // Render Wishes
+    // Render Wishes (RULE 13)
     function renderWishes(wishes) {
       const el = document.getElementById('wishesList');
       if (!wishes || wishes.length === 0) {
-        el.innerHTML = '<p style="text-align: center; color: var(--t-text-muted); font-size: 0.85rem;">Jadilah yang pertama memberikan ucapan dan doa!</p>';
+        el.innerHTML = '<p style="text-align: center; color: var(--t-text-muted); font-size: 0.85rem;">Belum ada ucapan. Jadilah yang pertama memberikan doa restu!</p>';
         return;
       }
       el.innerHTML = wishes.map(w => `
         <div class="t-card" style="margin-bottom: 12px; padding: 16px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
             <strong style="font-size: 0.95rem; color: var(--t-primary);">${w.sender_name}</strong>
-            <span class="badge ${w.attendance === 'hadir' ? 'badge-success' : 'badge-info'}" style="font-size: 0.7rem;">${w.attendance}</span>
+            <span class="badge ${w.attendance === 'hadir' ? 'badge-success' : 'badge-info'}" style="font-size: 0.72rem;">${w.attendance}</span>
           </div>
-          <p style="font-size: 0.9rem; color: var(--t-text); line-height: 1.4;">${w.message}</p>
+          <p style="font-size: 0.9rem; color: var(--t-text); line-height: 1.45;">${w.message}</p>
         </div>
       `).join('');
     }
 
-    // Open Invitation Handler (RULE 10)
+    // Open Invitation Handler (RULE 3 & 15)
     const cover = document.getElementById('coverOverlay');
     const openBtn = document.getElementById('btnOpenInvitation');
     const audio = document.getElementById('bgAudio');
     const musicBtn = document.getElementById('musicToggleBtn');
+    const musicIcon = document.getElementById('musicIcon');
 
     openBtn.addEventListener('click', () => {
       cover.classList.add('opened');
-      // Play background music
       if (audio.src) {
         audio.play().then(() => {
-          audioPlayed = true;
           musicBtn.classList.add('playing');
+          musicIcon.innerText = '❚❚';
         }).catch(() => {
-          // Autoplay blocked by browser policy
+          musicIcon.innerText = '▶';
         });
       }
     });
@@ -750,10 +1018,12 @@
       if (audio.paused) {
         audio.play();
         musicBtn.classList.add('playing');
+        musicIcon.innerText = '❚❚';
         showToast('Musik diputar');
       } else {
         audio.pause();
         musicBtn.classList.remove('playing');
+        musicIcon.innerText = '▶';
         showToast('Musik dijeda');
       }
     });
@@ -785,7 +1055,7 @@
         showToast('Koneksi terputus', 'danger');
       } finally {
         btn.disabled = false;
-        btn.innerText = 'Kirim Konfirmasi Kehadiran';
+        btn.innerText = 'Kirim Konfirmasi';
       }
     });
 
@@ -813,7 +1083,6 @@
         if (data.success) {
           showToast(data.message);
           document.getElementById('wishMessage').value = '';
-          // Refresh wishes list
           const wRes = await fetch(`/api/u/${slug}${guestToken ? '/' + guestToken : ''}/wishes`);
           const wData = await wRes.json();
           if (wData.success) {

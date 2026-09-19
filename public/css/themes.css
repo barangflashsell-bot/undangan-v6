@@ -1,4 +1,4 @@
-/* Themes Engine for Undangan Digital V5 */
+/* Themes Engine for Undangan Digital V6 */
 
 /* Base Invitation Layout */
 .theme-container {
@@ -15,15 +15,50 @@
 }
 
 /* ==========================================================================
-   THEME 1: ISLAMI EMERALD (Nuansa Islami Zamrud & Emas Mewah)
+   THEME: ISLAMIC ELEGANT (Hijau Emerald, Sage Green, Ivory/Cream, Soft Gold)
+   ========================================================================== */
+body[data-theme="islamic-elegant"] {
+  --t-primary: #0c3b2e;             /* Deep emerald green */
+  --t-primary-light: #165b47;
+  --t-primary-dark: #07251d;
+  --t-secondary-sage: #7d9d8b;      /* Sage green */
+  --t-secondary-sage-light: #e6ede9;
+  --t-accent: #c5a059;              /* Soft gold */
+  --t-accent-gold: #dfb76c;
+  --t-accent-dark: #9d7b37;
+  --t-accent-light: #faf5ea;
+  --t-bg: #f8f6f0;                  /* Warm ivory / cream background */
+  --t-bg-alt: #f2ece2;
+  --t-card-bg: #fdfbf7;
+  --t-card-border: #e6dfce;
+  --t-text: #1a2e26;
+  --t-text-muted: #536b60;
+  --t-font-title: 'Cinzel', 'Playfair Display', serif;
+  --t-font-body: 'Plus Jakarta Sans', sans-serif;
+  --t-font-script: 'Great Vibes', cursive;
+  --t-font-arabic: 'Amiri', 'Traditional Arabic', serif;
+  --t-cover-gradient: linear-gradient(180deg, rgba(12,59,46,0.92) 0%, rgba(7,37,29,0.98) 100%);
+  --t-ornament-color: #c5a059;
+  --t-btn-bg: linear-gradient(135deg, #c5a059 0%, #b38d44 100%);
+  --t-btn-text: #ffffff;
+  --t-arch-radius: 120px 120px 16px 16px;
+}
+
+/* ==========================================================================
+   THEME: ISLAMI EMERALD (Legacy Emerald)
    ========================================================================== */
 body[data-theme="islami-emerald"] {
   --t-primary: #064e3b;
   --t-primary-light: #065f46;
+  --t-primary-dark: #022c22;
+  --t-secondary-sage: #6ee7b7;
+  --t-secondary-sage-light: #ecfdf5;
   --t-accent: #d97706;
   --t-accent-gold: #f59e0b;
+  --t-accent-dark: #b45309;
   --t-accent-light: #fef3c7;
   --t-bg: #fcfbf7;
+  --t-bg-alt: #f4f2eb;
   --t-card-bg: #ffffff;
   --t-card-border: #e9e4d4;
   --t-text: #1c2e26;
@@ -31,22 +66,29 @@ body[data-theme="islami-emerald"] {
   --t-font-title: 'Playfair Display', serif;
   --t-font-body: 'Plus Jakarta Sans', sans-serif;
   --t-font-script: 'Great Vibes', cursive;
-  --t-cover-gradient: linear-gradient(180deg, rgba(6,78,59,0.85) 0%, rgba(6,78,59,0.95) 100%);
+  --t-font-arabic: 'Amiri', serif;
+  --t-cover-gradient: linear-gradient(180deg, rgba(6,78,59,0.88) 0%, rgba(6,78,59,0.98) 100%);
   --t-ornament-color: #d97706;
   --t-btn-bg: linear-gradient(135deg, #d97706, #b45309);
   --t-btn-text: #ffffff;
+  --t-arch-radius: 120px 120px 16px 16px;
 }
 
 /* ==========================================================================
-   THEME 2: ROSE GOLD (Romantic Blush & Luxury Rose Gold)
+   THEME: ROSE GOLD (Romantic Blush)
    ========================================================================== */
 body[data-theme="rose-gold"] {
   --t-primary: #881337;
   --t-primary-light: #9f1239;
+  --t-primary-dark: #4c0519;
+  --t-secondary-sage: #f43f5e;
+  --t-secondary-sage-light: #fff1f2;
   --t-accent: #e11d48;
   --t-accent-gold: #fb7185;
+  --t-accent-dark: #be123c;
   --t-accent-light: #ffe4e6;
   --t-bg: #fff5f6;
+  --t-bg-alt: #fde8eb;
   --t-card-bg: #ffffff;
   --t-card-border: #fecdd3;
   --t-text: #4c0519;
@@ -54,22 +96,29 @@ body[data-theme="rose-gold"] {
   --t-font-title: 'Playfair Display', serif;
   --t-font-body: 'Plus Jakarta Sans', sans-serif;
   --t-font-script: 'Great Vibes', cursive;
-  --t-cover-gradient: linear-gradient(180deg, rgba(136,19,55,0.85) 0%, rgba(76,5,25,0.95) 100%);
+  --t-font-arabic: 'Amiri', serif;
+  --t-cover-gradient: linear-gradient(180deg, rgba(136,19,55,0.88) 0%, rgba(76,5,25,0.98) 100%);
   --t-ornament-color: #fb7185;
   --t-btn-bg: linear-gradient(135deg, #e11d48, #be123c);
   --t-btn-text: #ffffff;
+  --t-arch-radius: 120px 120px 16px 16px;
 }
 
 /* ==========================================================================
-   THEME 3: MODERN MINIMALIST (Sleek Slate Luxury)
+   THEME: MODERN MINIMALIST (Sleek Slate)
    ========================================================================== */
 body[data-theme="modern-minimalist"] {
   --t-primary: #0f172a;
   --t-primary-light: #1e293b;
+  --t-primary-dark: #020617;
+  --t-secondary-sage: #94a3b8;
+  --t-secondary-sage-light: #f1f5f9;
   --t-accent: #64748b;
   --t-accent-gold: #94a3b8;
-  --t-accent-light: #f1f5f9;
+  --t-accent-dark: #475569;
+  --t-accent-light: #f8fafc;
   --t-bg: #f8fafc;
+  --t-bg-alt: #edf2f7;
   --t-card-bg: #ffffff;
   --t-card-border: #e2e8f0;
   --t-text: #0f172a;
@@ -77,22 +126,29 @@ body[data-theme="modern-minimalist"] {
   --t-font-title: 'Playfair Display', serif;
   --t-font-body: 'Plus Jakarta Sans', sans-serif;
   --t-font-script: 'Great Vibes', cursive;
-  --t-cover-gradient: linear-gradient(180deg, rgba(15,23,42,0.88) 0%, rgba(15,23,42,0.98) 100%);
+  --t-font-arabic: 'Amiri', serif;
+  --t-cover-gradient: linear-gradient(180deg, rgba(15,23,42,0.90) 0%, rgba(15,23,42,0.98) 100%);
   --t-ornament-color: #64748b;
   --t-btn-bg: linear-gradient(135deg, #0f172a, #334155);
   --t-btn-text: #ffffff;
+  --t-arch-radius: 120px 120px 16px 16px;
 }
 
 /* ==========================================================================
-   THEME 4: RUSTIC FLORA (Warm Botanical & Terracotta Sand)
+   THEME: RUSTIC FLORA (Warm Botanical)
    ========================================================================== */
 body[data-theme="rustic-flora"] {
   --t-primary: #7c2d12;
   --t-primary-light: #9a3412;
+  --t-primary-dark: #431407;
+  --t-secondary-sage: #ea580c;
+  --t-secondary-sage-light: #ffedd5;
   --t-accent: #c2410c;
   --t-accent-gold: #d97706;
-  --t-accent-light: #ffedd5;
+  --t-accent-dark: #9a3412;
+  --t-accent-light: #fefce8;
   --t-bg: #fefce8;
+  --t-bg-alt: #faeed1;
   --t-card-bg: #ffffff;
   --t-card-border: #fed7aa;
   --t-text: #431407;
@@ -100,21 +156,55 @@ body[data-theme="rustic-flora"] {
   --t-font-title: 'Playfair Display', serif;
   --t-font-body: 'Plus Jakarta Sans', sans-serif;
   --t-font-script: 'Great Vibes', cursive;
-  --t-cover-gradient: linear-gradient(180deg, rgba(124,45,18,0.85) 0%, rgba(67,20,7,0.95) 100%);
+  --t-font-arabic: 'Amiri', serif;
+  --t-cover-gradient: linear-gradient(180deg, rgba(124,45,18,0.88) 0%, rgba(67,20,7,0.98) 100%);
   --t-ornament-color: #c2410c;
   --t-btn-bg: linear-gradient(135deg, #c2410c, #9a3412);
   --t-btn-text: #ffffff;
+  --t-arch-radius: 120px 120px 16px 16px;
 }
 
-/* Section Components */
+/* ==========================================================================
+   SECTION & ISLAMIC ARCH DESIGN SYSTEM
+   ========================================================================== */
 .t-section {
-  padding: 45px 24px;
+  padding: 50px 24px;
   position: relative;
   text-align: center;
 }
 
 .t-section-alt {
-  background-color: rgba(0,0,0,0.02);
+  background-color: var(--t-bg-alt, rgba(0,0,0,0.02));
+}
+
+/* Islamic Geometric Pattern Subtle Texture */
+.islamic-bg-pattern {
+  background-image: radial-gradient(var(--t-accent) 0.6px, transparent 0.6px);
+  background-size: 18px 18px;
+  background-color: var(--t-bg);
+}
+
+/* Divider & Ornament Elements */
+.islamic-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 14px auto 26px;
+  color: var(--t-accent);
+}
+.islamic-divider .line {
+  width: 45px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--t-accent));
+}
+.islamic-divider .line.reverse {
+  background: linear-gradient(90deg, var(--t-accent), transparent);
+}
+.islamic-divider .star {
+  font-size: 15px;
+  color: var(--t-accent);
+  line-height: 1;
 }
 
 .t-ornament {
@@ -134,6 +224,7 @@ body[data-theme="rustic-flora"] {
 .t-ornament::before { left: -10px; }
 .t-ornament::after { right: -10px; }
 
+/* Cards & Islamic Arch Frames */
 .t-card {
   background: var(--t-card-bg);
   border: 1px solid var(--t-card-border);
@@ -143,6 +234,59 @@ body[data-theme="rustic-flora"] {
   box-shadow: 0 4px 20px rgba(0,0,0,0.04);
 }
 
+/* Islamic Arch Card (for Akad & Resepsi) */
+.arch-card {
+  background: var(--t-card-bg);
+  border: 1px solid var(--t-card-border);
+  border-radius: 60px 60px 16px 16px;
+  padding: 32px 20px 24px;
+  position: relative;
+  box-shadow: 0 6px 22px rgba(12, 59, 46, 0.06);
+  margin-bottom: 24px;
+  text-align: center;
+  border-top: 3px solid var(--t-accent-gold);
+}
+
+.arch-card-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--t-accent-light, #faf5ea);
+  border: 1px solid var(--t-accent-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -14px auto 14px;
+  font-size: 1.4rem;
+  box-shadow: 0 4px 10px rgba(197, 160, 89, 0.15);
+}
+
+/* Islamic Arch Frame for Groom & Bride Photos */
+.arch-frame {
+  width: 150px;
+  height: 200px;
+  border-radius: 120px 120px 16px 16px;
+  border: 2px solid var(--t-accent-gold);
+  padding: 4px;
+  margin: 0 auto 16px;
+  background: var(--t-card-bg);
+  box-shadow: 0 8px 24px rgba(12, 59, 46, 0.12);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arch-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 116px 116px 12px 12px;
+  display: block;
+}
+
+/* Typography Classes */
 .t-title {
   font-family: var(--t-font-title);
   color: var(--t-primary);
@@ -153,10 +297,53 @@ body[data-theme="rustic-flora"] {
 .t-subtitle {
   font-family: var(--t-font-script);
   color: var(--t-accent);
-  font-size: 2rem;
+  font-size: 2.2rem;
   line-height: 1.2;
 }
 
+.bismillah-text {
+  font-family: var(--t-font-arabic, 'Amiri', serif);
+  font-size: 1.85rem;
+  color: var(--t-primary);
+  line-height: 1.9;
+  direction: rtl;
+  margin-bottom: 6px;
+  text-shadow: 0 1px 2px rgba(197, 160, 89, 0.2);
+}
+
+.cover-bismillah {
+  font-family: var(--t-font-arabic, 'Amiri', serif);
+  font-size: 1.35rem;
+  color: var(--t-accent-gold);
+  line-height: 1.6;
+  direction: rtl;
+  margin-bottom: 12px;
+}
+
+.arabic-quote {
+  font-family: var(--t-font-arabic, 'Amiri', serif);
+  font-size: 1.3rem;
+  line-height: 2.1;
+  color: var(--t-primary);
+  direction: rtl;
+  margin-bottom: 14px;
+}
+
+.gold-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--t-primary);
+  background: linear-gradient(135deg, #dfb76c, #c5a059);
+  padding: 4px 14px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(197, 160, 89, 0.25);
+  margin-bottom: 12px;
+}
+
+/* Interactive Buttons */
 .t-btn {
   background: var(--t-btn-bg);
   color: var(--t-btn-text);
@@ -164,18 +351,28 @@ body[data-theme="rustic-flora"] {
   border-radius: 9999px;
   padding: 12px 28px;
   font-weight: 600;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
   text-decoration: none;
 }
 .t-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  filter: brightness(1.05);
 }
 .t-btn:active {
   transform: scale(0.98);
+}
+
+/* Islamic Geometric SVG Pattern Banner */
+.islamic-header-pattern {
+  width: 100%;
+  max-width: 240px;
+  height: 24px;
+  margin: 0 auto 12px;
+  opacity: 0.75;
 }

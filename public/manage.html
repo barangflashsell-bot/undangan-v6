@@ -11,7 +11,7 @@
       padding-bottom: 90px;
     }
 
-    /* Sticky Header - RULE 9: SHARE HARUS SELALU TERLIHAT */
+    /* Sticky Header - RULE 9 & 20: SHARE HARUS SELALU TERLIHAT */
     .manage-header {
       position: sticky;
       top: 0;
@@ -150,12 +150,12 @@
       transform: translateY(-2px);
     }
     .theme-card.selected {
-      border-color: var(--primary);
+      border-color: #0c3b2e;
       background: #f0fdf4;
-      box-shadow: 0 0 0 3px var(--primary-ring);
+      box-shadow: 0 0 0 3px rgba(12, 59, 46, 0.25);
     }
     .theme-card .color-strip {
-      height: 38px;
+      height: 40px;
       border-radius: 8px;
       margin-bottom: 10px;
       display: flex;
@@ -164,6 +164,61 @@
       color: #ffffff;
       font-weight: 700;
       font-size: 0.8rem;
+    }
+
+    /* Toggle Switch Component */
+    .toggle-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    .toggle-label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #0f172a;
+    }
+    .toggle-desc {
+      font-size: 0.78rem;
+      color: #64748b;
+      margin-top: 2px;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background-color: #cbd5e1;
+      transition: .3s;
+      border-radius: 24px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #059669;
+    }
+    input:checked + .slider:before {
+      transform: translateX(20px);
     }
 
     /* Guest Table & List */
@@ -215,7 +270,7 @@
 </head>
 <body>
 
-  <!-- Sticky Top Header with ALWAYS VISIBLE SHARE BUTTON (RULE 9) -->
+  <!-- Sticky Top Header with ALWAYS VISIBLE SHARE BUTTON (RULE 9 & 20) -->
   <header class="manage-header">
     <div class="title-editor-wrap">
       <input type="text" id="invTitleInput" class="inv-title-input" title="Klik untuk mengubah judul undangan" placeholder="Judul Undangan...">
@@ -234,10 +289,11 @@
   <div class="tabs-nav-container">
     <div class="tabs-nav">
       <button class="tab-btn active" data-target="panel-tema">🎨 Tema</button>
+      <button class="tab-btn" data-target="panel-islami">🕌 Konten Islami</button>
       <button class="tab-btn" data-target="panel-mempelai">👫 Mempelai</button>
       <button class="tab-btn" data-target="panel-acara">📅 Acara & Lokasi</button>
       <button class="tab-btn" data-target="panel-cerita">📖 Cerita & Galeri</button>
-      <button class="tab-btn" data-target="panel-amplop">🎁 Amplop Digital</button>
+      <button class="tab-btn" data-target="panel-amplop">🎁 Hadiah & Rekening</button>
       <button class="tab-btn" data-target="panel-tamu">👥 Tamu & Link</button>
       <button class="tab-btn" data-target="panel-ucapan">💬 Ucapan</button>
     </div>
@@ -254,13 +310,22 @@
         </p>
 
         <div class="theme-grid">
+          <!-- Islamic Elegant (FEATURED TEMA BARU) -->
+          <div class="theme-card" data-theme="islamic-elegant" onclick="selectTheme('islamic-elegant')">
+            <div class="color-strip" style="background: linear-gradient(135deg, #0c3b2e, #c5a059);">
+              Emerald & Gold ★
+            </div>
+            <strong style="display: block; font-size: 0.95rem; color: #0c3b2e;">Islamic Elegant</strong>
+            <small style="color: #64748b; font-size: 0.75rem;">Mewah, Khidmat & Suci</small>
+          </div>
+
           <!-- Islami Emerald -->
           <div class="theme-card" data-theme="islami-emerald" onclick="selectTheme('islami-emerald')">
             <div class="color-strip" style="background: linear-gradient(135deg, #064e3b, #d97706);">
               Zamrud & Emas
             </div>
             <strong style="display: block; font-size: 0.9rem;">Islami Emerald</strong>
-            <small style="color: #64748b; font-size: 0.75rem;">Nuansa Islami Mewah</small>
+            <small style="color: #64748b; font-size: 0.75rem;">Nuansa Klasik Zamrud</small>
           </div>
 
           <!-- Rose Gold -->
@@ -293,178 +358,350 @@
       </div>
     </div>
 
-    <!-- TAB 2: DATA MEMPELAI -->
+    <!-- TAB 2: KONTEN ISLAMI & PENGATURAN SECTION (RULE 5, 6, 16, 19) -->
+    <div id="panel-islami" class="tab-panel">
+      <div class="card">
+        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 4px;">Konten Islami & Pembukaan</h3>
+        <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 16px;">
+          Sesuaikan lafaz Bismillah, salam pembuka, kutipan ayat suci, dan doa penutup sesuai keinginan.
+        </p>
+
+        <!-- Bismillah Toggle -->
+        <div class="toggle-wrap">
+          <div>
+            <div class="toggle-label">Tampilkan Lafaz Bismillah</div>
+            <div class="toggle-desc">Menampilkan kaligrafi بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="bismillahEnabled" checked onchange="scheduleAutoSave()">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Salam Pembuka</label>
+          <input type="text" id="salamOpening" class="form-input auto-save-input" placeholder="Assalamu'alaikum Warahmatullahi Wabarakatuh">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Kalimat Pembuka Undangan</label>
+          <textarea id="openingText" class="form-textarea auto-save-input" rows="3" placeholder="Dengan memohon rahmat dan ridho Allah Subhanahu Wa Ta'ala..."></textarea>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
+
+        <!-- Ayat / Kutipan Section -->
+        <div class="toggle-wrap">
+          <div>
+            <div class="toggle-label">Section Ayat / Kutipan Suci</div>
+            <div class="toggle-desc">Aktifkan atau nonaktifkan section kutipan ayat Al-Qur'an</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="quoteEnabled" checked onchange="scheduleAutoSave()">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div id="quoteFieldsWrap">
+          <div class="form-group">
+            <label class="form-label">Teks Arab Ayat Al-Qur'an</label>
+            <textarea id="quoteArabic" class="form-textarea auto-save-input" rows="2" style="direction: rtl; font-family: 'Amiri', serif; font-size: 1.15rem;"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Terjemahan Ayat (Indonesia)</label>
+            <textarea id="quoteText" class="form-textarea auto-save-input" rows="3"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Sumber Ayat / Surat</label>
+            <input type="text" id="quoteSource" class="form-input auto-save-input" placeholder="QS. Ar-Rum: 21">
+          </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
+
+        <!-- Teks Penutup (Closing) -->
+        <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 10px;">Doa & Teks Penutup (Closing)</h4>
+        
+        <div class="form-group">
+          <label class="form-label">Judul Doa Penutup</label>
+          <input type="text" id="closingTitle" class="form-input auto-save-input" placeholder="Jazakumullahu Khairan Katsiran">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Pesan Terima Kasih / Penutup</label>
+          <textarea id="closingText" class="form-textarea auto-save-input" rows="2" placeholder="Terima kasih atas doa dan kehadiran Anda..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Salam Penutup</label>
+          <input type="text" id="closingSalam" class="form-input auto-save-input" placeholder="Wassalamu'alaikum Warahmatullahi Wabarakatuh">
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
+
+        <!-- Toggle Section Lainnya -->
+        <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 12px;">Aktifkan / Nonaktifkan Section (ON / OFF)</h4>
+
+        <div class="toggle-wrap">
+          <div>
+            <div class="toggle-label">Countdown Timer</div>
+            <div class="toggle-desc">Hitung mundur hari, jam, menit menuju hari H</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="sectionCountdownEnabled" checked onchange="scheduleAutoSave()">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="toggle-wrap">
+          <div>
+            <div class="toggle-label">Kisah Cinta / Timeline</div>
+            <div class="toggle-desc">Menampilkan perjalanan cinta kedua mempelai</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="sectionStoryEnabled" checked onchange="scheduleAutoSave()">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="toggle-wrap">
+          <div>
+            <div class="toggle-label">Galeri Foto</div>
+            <div class="toggle-desc">Menampilkan galeri foto dengan bentuk arch & lightbox</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="sectionGalleryEnabled" checked onchange="scheduleAutoSave()">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="toggle-wrap">
+          <div>
+            <div class="toggle-label">Wedding Gift / Amplop Digital</div>
+            <div class="toggle-desc">Menampilkan rekening bank atau e-wallet untuk hadiah</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="sectionGiftEnabled" checked onchange="scheduleAutoSave()">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="toggle-wrap">
+          <div>
+            <div class="toggle-label">Form RSVP / Konfirmasi Kehadiran</div>
+            <div class="toggle-desc">Mengizinkan tamu mengonfirmasi kehadiran online</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="sectionRsvpEnabled" checked onchange="scheduleAutoSave()">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="toggle-wrap">
+          <div>
+            <div class="toggle-label">Buku Ucapan & Doa Restu</div>
+            <div class="toggle-desc">Menampilkan doa dan ucapan selamat dari tamu</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="sectionWishesEnabled" checked onchange="scheduleAutoSave()">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 3: DATA MEMPELAI (RULE 7) -->
     <div id="panel-mempelai" class="tab-panel">
       <div class="card">
         <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 16px;">Data Mempelai Pria & Wanita</h3>
         
         <!-- Pria -->
         <div style="background: #f8fafc; padding: 14px; border-radius: 12px; margin-bottom: 16px; border: 1px solid #e2e8f0;">
-          <h4 style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin-bottom: 10px;">🤵 Mempelai Pria</h4>
+          <h4 style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin-bottom: 10px;">🤵 Mempelai Pria (The Groom)</h4>
           <div class="form-group">
             <label class="form-label">Nama Lengkap</label>
-            <input type="text" id="groomName" class="form-input auto-save-input">
+            <input type="text" id="groomName" class="form-input auto-save-input" placeholder="Ahmad Fadillah">
           </div>
           <div class="form-group">
             <label class="form-label">Nama Panggilan</label>
-            <input type="text" id="groomNickname" class="form-input auto-save-input">
+            <input type="text" id="groomNickname" class="form-input auto-save-input" placeholder="Ahmad">
           </div>
           <div class="form-group">
             <label class="form-label">Keterangan Orang Tua</label>
-            <textarea id="groomParents" class="form-textarea auto-save-input" rows="2"></textarea>
+            <textarea id="groomParents" class="form-textarea auto-save-input" rows="2" placeholder="Putra pertama dari Bpk. Ir. H. Mansyur & Ibu Hj. Siti Fatimah"></textarea>
           </div>
           <div class="form-group">
             <label class="form-label">URL Foto Pria</label>
-            <input type="text" id="groomPhoto" class="form-input auto-save-input" placeholder="https://...">
+            <input type="text" id="groomPhoto" class="form-input auto-save-input" placeholder="https://images.unsplash.com/...">
           </div>
         </div>
 
         <!-- Wanita -->
         <div style="background: #f8fafc; padding: 14px; border-radius: 12px; border: 1px solid #e2e8f0;">
-          <h4 style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin-bottom: 10px;">👰 Mempelai Wanita</h4>
+          <h4 style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin-bottom: 10px;">👰 Mempelai Wanita (The Bride)</h4>
           <div class="form-group">
             <label class="form-label">Nama Lengkap</label>
-            <input type="text" id="brideName" class="form-input auto-save-input">
+            <input type="text" id="brideName" class="form-input auto-save-input" placeholder="Aisyah Rahma">
           </div>
           <div class="form-group">
             <label class="form-label">Nama Panggilan</label>
-            <input type="text" id="brideNickname" class="form-input auto-save-input">
+            <input type="text" id="brideNickname" class="form-input auto-save-input" placeholder="Aisyah">
           </div>
           <div class="form-group">
             <label class="form-label">Keterangan Orang Tua</label>
-            <textarea id="brideParents" class="form-textarea auto-save-input" rows="2"></textarea>
+            <textarea id="brideParents" class="form-textarea auto-save-input" rows="2" placeholder="Putri kedua dari Bpk. H. Rahmat Hidayat & Ibu Hj. Nur Hasanah"></textarea>
           </div>
           <div class="form-group">
             <label class="form-label">URL Foto Wanita</label>
-            <input type="text" id="bridePhoto" class="form-input auto-save-input" placeholder="https://...">
+            <input type="text" id="bridePhoto" class="form-input auto-save-input" placeholder="https://images.unsplash.com/...">
           </div>
         </div>
       </div>
     </div>
 
-    <!-- TAB 3: ACARA & LOKASI -->
+    <!-- TAB 4: ACARA & LOKASI (RULE 8: AKAD, RESEPSI & MULTI-ACARA) -->
     <div id="panel-acara" class="tab-panel">
       <div class="card">
         <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 16px;">Jadwal Acara & Lokasi</h3>
         
         <div class="form-group">
-          <label class="form-label">Tanggal Hari H (Untuk Countdown Timer)</label>
+          <label class="form-label">Tanggal Utama Acara (Untuk Countdown)</label>
           <input type="date" id="eventDate" class="form-input auto-save-input">
         </div>
 
         <!-- Akad Nikah -->
         <div style="background: #f8fafc; padding: 14px; border-radius: 12px; margin-bottom: 16px; border: 1px solid #e2e8f0;">
-          <h4 style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin-bottom: 10px;">💍 Akad Nikah</h4>
-          <div class="form-group">
-            <label class="form-label">Hari & Tanggal</label>
-            <input type="text" id="akadDate" class="form-input auto-save-input" placeholder="Minggu, 25 Oktober 2026">
+          <h4 style="font-size: 0.95rem; font-weight: 700; color: #0c3b2e; margin-bottom: 10px;">💍 Akad Nikah</h4>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group">
+              <label class="form-label">Hari & Tanggal</label>
+              <input type="text" id="akadDate" class="form-input auto-save-input" placeholder="Sabtu, 12 Desember 2026">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Waktu</label>
+              <input type="text" id="akadTime" class="form-input auto-save-input" placeholder="08.00 WIB">
+            </div>
           </div>
           <div class="form-group">
-            <label class="form-label">Waktu Acara</label>
-            <input type="text" id="akadTime" class="form-input auto-save-input" placeholder="08.00 - 10.00 WIB">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Nama Tempat / Gedung</label>
-            <input type="text" id="akadLocation" class="form-input auto-save-input" placeholder="Masjid Agung Al-Falah">
+            <label class="form-label">Nama Tempat / Masjid</label>
+            <input type="text" id="akadLocation" class="form-input auto-save-input" placeholder="Masjid Raya Al-Ikhlas">
           </div>
           <div class="form-group">
             <label class="form-label">Alamat Lengkap</label>
-            <textarea id="akadAddress" class="form-textarea auto-save-input" rows="2"></textarea>
+            <textarea id="akadAddress" class="form-textarea auto-save-input" rows="2" placeholder="Jl. Mawar Melati No. 12, Jakarta Selatan"></textarea>
           </div>
           <div class="form-group">
             <label class="form-label">Link Google Maps</label>
-            <input type="text" id="akadMapUrl" class="form-input auto-save-input" placeholder="https://maps.app.goo.gl/...">
+            <input type="text" id="akadMapUrl" class="form-input auto-save-input" placeholder="https://maps.google.com/...">
           </div>
         </div>
 
         <!-- Resepsi -->
         <div style="background: #f8fafc; padding: 14px; border-radius: 12px; border: 1px solid #e2e8f0;">
-          <h4 style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin-bottom: 10px;">🎉 Resepsi Pernikahan</h4>
-          <div class="form-group">
-            <label class="form-label">Hari & Tanggal</label>
-            <input type="text" id="resepsiDate" class="form-input auto-save-input" placeholder="Minggu, 25 Oktober 2026">
+          <h4 style="font-size: 0.95rem; font-weight: 700; color: #0c3b2e; margin-bottom: 10px;">🏛️ Resepsi Pernikahan</h4>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group">
+              <label class="form-label">Hari & Tanggal</label>
+              <input type="text" id="resepsiDate" class="form-input auto-save-input" placeholder="Sabtu, 12 Desember 2026">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Waktu</label>
+              <input type="text" id="resepsiTime" class="form-input auto-save-input" placeholder="11.00 WIB">
+            </div>
           </div>
           <div class="form-group">
-            <label class="form-label">Waktu Acara</label>
-            <input type="text" id="resepsiTime" class="form-input auto-save-input" placeholder="11.00 - 14.00 WIB">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Nama Tempat / Ballroom</label>
-            <input type="text" id="resepsiLocation" class="form-input auto-save-input" placeholder="Grand Ballroom Hotel Majapahit">
+            <label class="form-label">Nama Tempat / Gedung</label>
+            <input type="text" id="resepsiLocation" class="form-input auto-save-input" placeholder="Grand Ballroom Sasana Kriya">
           </div>
           <div class="form-group">
             <label class="form-label">Alamat Lengkap</label>
-            <textarea id="resepsiAddress" class="form-textarea auto-save-input" rows="2"></textarea>
+            <textarea id="resepsiAddress" class="form-textarea auto-save-input" rows="2" placeholder="Taman Mini Indonesia Indah, Jakarta Timur"></textarea>
           </div>
           <div class="form-group">
             <label class="form-label">Link Google Maps</label>
-            <input type="text" id="resepsiMapUrl" class="form-input auto-save-input" placeholder="https://maps.app.goo.gl/...">
+            <input type="text" id="resepsiMapUrl" class="form-input auto-save-input" placeholder="https://maps.google.com/...">
           </div>
+        </div>
+
+        <!-- Acara Tambahan (Multi-Acara) -->
+        <div style="margin-top: 18px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <h4 style="font-size: 0.95rem; font-weight: 700; color: #0f172a;">Acara Tambahan (Opsional)</h4>
+            <button type="button" onclick="openAddEventModal()" class="btn btn-secondary btn-sm">+ Tambah Acara</button>
+          </div>
+          <div id="customEventsList"></div>
         </div>
       </div>
     </div>
 
-    <!-- TAB 4: CERITA, GALERI, & MUSIK -->
+    <!-- TAB 5: CERITA, GALERI & MUSIK (RULE 10, 11, 15) -->
     <div id="panel-cerita" class="tab-panel">
       <div class="card">
-        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 16px;">Kutipan, Galeri & Musik</h3>
+        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 16px;">Musik, Galeri & Kisah Cinta</h3>
         
-        <div class="form-group">
-          <label class="form-label">Kutipan / Ayat Suci</label>
-          <textarea id="quoteText" class="form-textarea auto-save-input" rows="3"></textarea>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Sumber Kutipan</label>
-          <input type="text" id="quoteSource" class="form-input auto-save-input" placeholder="QS. Ar-Rum: 21">
-        </div>
-
+        <!-- Musik Latar -->
         <div class="form-group">
           <label class="form-label">Link Audio Musik Latar (MP3)</label>
           <input type="text" id="musicUrl" class="form-input auto-save-input" placeholder="https://.../music.mp3">
-          <small style="color: #64748b; font-size: 0.75rem;">Musik akan otomatis dimainkan saat tamu menekan Buka Undangan.</small>
+          <small style="color: #64748b; font-size: 0.75rem;">Musik akan diputar saat tamu menekan tombol Buka Undangan.</small>
         </div>
 
+        <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 18px 0;">
+
+        <!-- Kisah Cinta Timeline -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <h4 style="font-size: 0.95rem; font-weight: 700;">Kisah Cinta (Story Timeline)</h4>
+          <button type="button" onclick="addStoryItem()" class="btn btn-secondary btn-sm">+ Tambah Momen</button>
+        </div>
+        <div id="storyItemsWrap"></div>
+
+        <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 18px 0;">
+
+        <!-- Galeri Foto -->
         <div class="form-group">
           <label class="form-label">Foto Galeri (Pisahkan URL dengan baris baru)</label>
           <textarea id="galleryPhotosInput" class="form-textarea" rows="4" placeholder="https://images.unsplash.com/...&#10;https://images.unsplash.com/..."></textarea>
-          <button type="button" onclick="saveGalleryFromTextarea()" class="btn btn-secondary btn-sm" style="margin-top: 6px;">Simpan Daftar Galeri</button>
+          <button type="button" onclick="saveGalleryFromTextarea()" class="btn btn-secondary btn-sm" style="margin-top: 8px;">Simpan Daftar Galeri</button>
         </div>
       </div>
     </div>
 
-    <!-- TAB 5: AMPLOP & REKENING HADIAH -->
+    <!-- TAB 6: HADIAH & REKENING (RULE 14) -->
     <div id="panel-amplop" class="tab-panel">
       <div class="card">
-        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 4px;">Amplop Digital & Kado</h3>
+        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 4px;">Wedding Gift / Amplop Digital</h3>
         <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 16px;">
-          Tamu dapat menyalin nomor rekening untuk memberikan tanda kasih secara digital.
+          Tamu dapat menyalin nomor rekening atau e-wallet untuk memberikan tanda kasih secara digital.
         </p>
 
         <div id="bankList"></div>
 
         <div style="background: #f8fafc; padding: 14px; border-radius: 12px; border: 1px dashed #cbd5e1; margin-top: 14px;">
-          <h4 style="font-size: 0.9rem; font-weight: 700; margin-bottom: 8px;">+ Tambah Rekening Bank</h4>
+          <h4 style="font-size: 0.9rem; font-weight: 700; margin-bottom: 8px;">+ Tambah Rekening / E-Wallet</h4>
           <div class="form-group">
-            <input type="text" id="newBankName" class="form-input" placeholder="Nama Bank (misal: BCA, Mandiri, BSI)">
+            <input type="text" id="newBankName" class="form-input" placeholder="Nama Bank / E-Wallet (BSI, Mandiri, BCA, GoPay, OVO)">
           </div>
           <div class="form-group">
-            <input type="text" id="newBankAccNumber" class="form-input" placeholder="Nomor Rekening">
+            <input type="text" id="newBankAccNumber" class="form-input" placeholder="Nomor Rekening / No. HP E-Wallet">
           </div>
           <div class="form-group">
-            <input type="text" id="newBankAccHolder" class="form-input" placeholder="Atas Nama Pemilik Rekening">
+            <input type="text" id="newBankAccHolder" class="form-input" placeholder="Atas Nama Pemilik">
           </div>
           <button type="button" onclick="addBankAccount()" class="btn btn-primary btn-sm">+ Simpan Rekening</button>
         </div>
       </div>
     </div>
 
-    <!-- TAB 6: DAFTAR TAMU & LINK KHUSUS (RULE 6) -->
+    <!-- TAB 7: DAFTAR TAMU & GUEST LINK (RULE 6 & 17) -->
     <div id="panel-tamu" class="tab-panel">
       <div class="card">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
           <div>
-            <h3 style="font-size: 1.15rem; font-weight: 700;">Daftar Tamu & Guest Token</h3>
-            <p style="font-size: 0.85rem; color: #64748b;">Setiap tamu mendapatkan Guest Token unik dan nama otomatis muncul di cover.</p>
+            <h3 style="font-size: 1.15rem; font-weight: 700;">Daftar Tamu & Personalized Guest Link</h3>
+            <p style="font-size: 0.85rem; color: #64748b;">Setiap tamu mendapatkan link khusus dengan nama otomatis di cover screen.</p>
           </div>
         </div>
 
@@ -472,14 +709,14 @@
         <form id="addGuestForm" style="background: #f8fafc; padding: 14px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 18px;">
           <div class="form-group">
             <label class="form-label">Nama Tamu / Keluarga</label>
-            <input type="text" id="guestNameInput" class="form-input" placeholder="Contoh: Bapak Dr. Bambang & Ibu" required>
+            <input type="text" id="guestNameInput" class="form-input" placeholder="Contoh: Bapak Dr. H. Ahmad & Keluarga" required>
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
             <div class="form-group">
               <label class="form-label">Kategori Tamu</label>
               <select id="guestCategoryInput" class="form-select">
-                <option value="Keluarga">Keluarga</option>
                 <option value="VIP">VIP</option>
+                <option value="Keluarga">Keluarga</option>
                 <option value="Sahabat">Sahabat</option>
                 <option value="Rekan Kerja">Rekan Kerja</option>
                 <option value="Tamu Undangan">Tamu Undangan</option>
@@ -491,18 +728,18 @@
             </div>
           </div>
           <button type="submit" class="btn btn-primary" style="width: 100%;">
-            + Tambah Tamu & Buat Guest Link
+            + Tambah Tamu & Buat Link Personalisasi
           </button>
         </form>
 
-        <!-- Daftar Tamu Container -->
+        <!-- Container Daftar Tamu -->
         <div id="guestsContainer">
           <div style="text-align: center; padding: 20px; color: #64748b;">Memuat daftar tamu...</div>
         </div>
       </div>
     </div>
 
-    <!-- TAB 7: UCAPAN & DOA -->
+    <!-- TAB 8: UCAPAN & DOA RESTU (RULE 13) -->
     <div id="panel-ucapan" class="tab-panel">
       <div class="card">
         <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 12px;">Ucapan & Doa dari Tamu</h3>
@@ -519,7 +756,7 @@
     👁️ Preview Undangan
   </a>
 
-  <!-- MODAL SHARE (RULE 9) -->
+  <!-- MODAL SHARE (RULE 9 & 20: SELALU MUDAH DIAKSES) -->
   <div class="modal-backdrop" id="shareModal">
     <div class="modal-box">
       <div class="modal-header">
@@ -528,10 +765,10 @@
       </div>
       <div class="modal-body">
         <p style="font-size: 0.875rem; color: #475569; margin-bottom: 16px;">
-          Bagikan link undangan kepada keluarga, sahabat, dan kerabat dengan pesan resmi yang rapi.
+          Bagikan link undangan kepada keluarga, sahabat, dan kerabat dengan pesan resmi yang sopan.
         </p>
 
-        <!-- General Public Link -->
+        <!-- Public Link -->
         <div class="form-group">
           <label class="form-label">Link Undangan Publik:</label>
           <div style="display: flex; gap: 8px;">
@@ -552,9 +789,9 @@
         <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
 
         <div>
-          <label class="form-label">Ingin kirim dengan nama khusus per tamu?</label>
+          <label class="form-label">Bagikan untuk Tamu Tertentu (Personalisasi):</label>
           <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 8px;">
-            Buka tab <strong>👥 Tamu & Link</strong> untuk menyalin link dengan nama tamu yang langsung tertera di cover undangan.
+            Buka tab <strong>👥 Tamu & Link</strong> untuk menyalin link per tamu dengan salam yang mencantumkan nama penerima di cover screen.
           </p>
           <button type="button" onclick="switchToGuestTab()" class="btn btn-secondary btn-sm" style="width: 100%;">
             Buka Daftar Tamu →
@@ -627,7 +864,8 @@
 
         btn.classList.add('active');
         const targetId = btn.getAttribute('data-target');
-        document.getElementById(targetId).classList.add('active');
+        const targetPanel = document.getElementById(targetId);
+        if (targetPanel) targetPanel.classList.add('active');
       });
     });
 
@@ -651,8 +889,30 @@
         currentInvitation = data.invitation;
         guestList = data.guests || [];
 
-        // Populate fields
-        document.getElementById('invTitleInput').value = currentInvitation.title;
+        // Title
+        document.getElementById('invTitleInput').value = currentInvitation.title || '';
+
+        // Konten Islami & Section Toggles
+        document.getElementById('bismillahEnabled').checked = currentInvitation.bismillah_enabled !== 0;
+        document.getElementById('salamOpening').value = currentInvitation.salam_opening || "Assalamu'alaikum Warahmatullahi Wabarakatuh";
+        document.getElementById('openingText').value = currentInvitation.opening_text || "Dengan memohon rahmat dan ridho Allah Subhanahu Wa Ta'ala, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri syukuran pernikahan kami:";
+        document.getElementById('quoteEnabled').checked = currentInvitation.quote_enabled !== 0;
+        document.getElementById('quoteArabic').value = currentInvitation.quote_arabic || "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً";
+        document.getElementById('quoteText').value = currentInvitation.quote_text || 'Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri, supaya kamu merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang.';
+        document.getElementById('quoteSource').value = currentInvitation.quote_source || 'QS. Ar-Rum: 21';
+
+        document.getElementById('closingTitle').value = currentInvitation.closing_title || 'Jazakumullahu Khairan Katsiran';
+        document.getElementById('closingText').value = currentInvitation.closing_text || 'Terima kasih atas doa dan kehadiran Anda.';
+        document.getElementById('closingSalam').value = currentInvitation.closing_salam || "Wassalamu'alaikum Warahmatullahi Wabarakatuh";
+
+        document.getElementById('sectionCountdownEnabled').checked = currentInvitation.section_countdown_enabled !== 0;
+        document.getElementById('sectionStoryEnabled').checked = currentInvitation.section_story_enabled !== 0;
+        document.getElementById('sectionGalleryEnabled').checked = currentInvitation.section_gallery_enabled !== 0;
+        document.getElementById('sectionGiftEnabled').checked = currentInvitation.section_gift_enabled !== 0;
+        document.getElementById('sectionRsvpEnabled').checked = currentInvitation.section_rsvp_enabled !== 0;
+        document.getElementById('sectionWishesEnabled').checked = currentInvitation.section_wishes_enabled !== 0;
+
+        // Mempelai
         document.getElementById('groomName').value = currentInvitation.groom_name || '';
         document.getElementById('groomNickname').value = currentInvitation.groom_nickname || '';
         document.getElementById('groomParents').value = currentInvitation.groom_parents || '';
@@ -663,6 +923,7 @@
         document.getElementById('brideParents').value = currentInvitation.bride_parents || '';
         document.getElementById('bridePhoto').value = currentInvitation.bride_photo || '';
 
+        // Acara & Lokasi
         document.getElementById('eventDate').value = currentInvitation.event_date || '';
         document.getElementById('akadDate').value = currentInvitation.akad_date || '';
         document.getElementById('akadTime').value = currentInvitation.akad_time || '';
@@ -676,24 +937,26 @@
         document.getElementById('resepsiAddress').value = currentInvitation.resepsi_address || '';
         document.getElementById('resepsiMapUrl').value = currentInvitation.resepsi_map_url || '';
 
-        document.getElementById('quoteText').value = currentInvitation.quote_text || '';
-        document.getElementById('quoteSource').value = currentInvitation.quote_source || '';
+        // Musik & Galeri
         document.getElementById('musicUrl').value = currentInvitation.music_url || '';
-
         if (Array.isArray(currentInvitation.gallery_photos)) {
           document.getElementById('galleryPhotosInput').value = currentInvitation.gallery_photos.join('\n');
         }
 
+        // Render Custom Events
+        renderCustomEvents(currentInvitation.events_data || []);
+
+        // Render Story Items
+        renderStoryItems(currentInvitation.love_story || []);
+
         // Highlight selected theme
-        updateThemeSelectionUI(currentInvitation.theme_id);
+        updateThemeSelectionUI(currentInvitation.theme_id || 'islamic-elegant');
 
         // Render Bank List
         renderBankAccounts(currentInvitation.bank_accounts || []);
 
-        // Render Guests
+        // Render Guests & Wishes
         renderGuests();
-
-        // Render Wishes
         renderWishes(data.wishes || []);
 
         // Update preview link
@@ -706,12 +969,11 @@
       }
     }
 
-    // Inline Title Auto-Save (RULE 8: Nama Undangan Dapat Diubah)
+    // Auto-Save Listeners
     document.getElementById('invTitleInput').addEventListener('input', (e) => {
       triggerAutoSave({ title: e.target.value });
     });
 
-    // Auto-save listener for form inputs
     document.querySelectorAll('.auto-save-input').forEach(input => {
       input.addEventListener('input', () => {
         scheduleAutoSave();
@@ -721,7 +983,7 @@
     function scheduleAutoSave() {
       setSaveStatus('saving');
       clearTimeout(saveTimeout);
-      saveTimeout = setTimeout(saveAllFields, 800);
+      saveTimeout = setTimeout(saveAllFields, 700);
     }
 
     async function triggerAutoSave(payload) {
@@ -746,6 +1008,22 @@
     async function saveAllFields() {
       const payload = {
         title: document.getElementById('invTitleInput').value,
+        bismillah_enabled: document.getElementById('bismillahEnabled').checked ? 1 : 0,
+        salam_opening: document.getElementById('salamOpening').value,
+        opening_text: document.getElementById('openingText').value,
+        quote_enabled: document.getElementById('quoteEnabled').checked ? 1 : 0,
+        quote_arabic: document.getElementById('quoteArabic').value,
+        quote_text: document.getElementById('quoteText').value,
+        quote_source: document.getElementById('quoteSource').value,
+        closing_title: document.getElementById('closingTitle').value,
+        closing_text: document.getElementById('closingText').value,
+        closing_salam: document.getElementById('closingSalam').value,
+        section_countdown_enabled: document.getElementById('sectionCountdownEnabled').checked ? 1 : 0,
+        section_story_enabled: document.getElementById('sectionStoryEnabled').checked ? 1 : 0,
+        section_gallery_enabled: document.getElementById('sectionGalleryEnabled').checked ? 1 : 0,
+        section_gift_enabled: document.getElementById('sectionGiftEnabled').checked ? 1 : 0,
+        section_rsvp_enabled: document.getElementById('sectionRsvpEnabled').checked ? 1 : 0,
+        section_wishes_enabled: document.getElementById('sectionWishesEnabled').checked ? 1 : 0,
         groom_name: document.getElementById('groomName').value,
         groom_nickname: document.getElementById('groomNickname').value,
         groom_parents: document.getElementById('groomParents').value,
@@ -765,14 +1043,12 @@
         resepsi_location: document.getElementById('resepsiLocation').value,
         resepsi_address: document.getElementById('resepsiAddress').value,
         resepsi_map_url: document.getElementById('resepsiMapUrl').value,
-        quote_text: document.getElementById('quoteText').value,
-        quote_source: document.getElementById('quoteSource').value,
         music_url: document.getElementById('musicUrl').value
       };
       await triggerAutoSave(payload);
     }
 
-    // Save Gallery photos
+    // Gallery Save
     async function saveGalleryFromTextarea() {
       const text = document.getElementById('galleryPhotosInput').value;
       const urls = text.split('\n').map(u => u.trim()).filter(u => u.length > 0);
@@ -780,7 +1056,7 @@
       showToast('Galeri foto berhasil disimpan!');
     }
 
-    // Theme Switcher (RULE 12: DATA TIDAK BOLEH HILANG)
+    // Theme Switcher (RULE 12: DATA UTUH)
     async function selectTheme(themeId) {
       try {
         setSaveStatus('saving');
@@ -793,7 +1069,7 @@
         if (data.success) {
           updateThemeSelectionUI(themeId);
           setSaveStatus('saved');
-          showToast(data.message);
+          showToast(`Tema berganti menjadi ${themeId}`);
         } else {
           showToast(data.error || 'Gagal mengganti tema', 'danger');
         }
@@ -812,7 +1088,93 @@
       });
     }
 
-    // Bank Accounts Handling
+    // Story Items Editor
+    function renderStoryItems(stories) {
+      const container = document.getElementById('storyItemsWrap');
+      if (!stories || stories.length === 0) {
+        container.innerHTML = '<p style="font-size: 0.85rem; color: #64748b;">Belum ada momen kisah cinta.</p>';
+        return;
+      }
+      container.innerHTML = stories.map((s, idx) => `
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; margin-bottom: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <strong style="color: #0c3b2e;">${s.year} - ${s.title}</strong>
+            <button type="button" onclick="deleteStoryItem(${idx})" class="btn btn-danger btn-sm" style="padding: 4px 8px; font-size: 0.75rem;">Hapus</button>
+          </div>
+          <p style="font-size: 0.85rem; color: #475569;">${s.desc}</p>
+        </div>
+      `).join('');
+    }
+
+    async function addStoryItem() {
+      const year = prompt('Masukkan Tahun (contoh: 2022):');
+      if (!year) return;
+      const title = prompt('Judul Momen (contoh: Awal Pertemuan):');
+      if (!title) return;
+      const desc = prompt('Deskripsi singkat:');
+
+      const stories = currentInvitation.love_story || [];
+      stories.push({ year, title, desc: desc || '' });
+      await triggerAutoSave({ love_story: stories });
+      currentInvitation.love_story = stories;
+      renderStoryItems(stories);
+      showToast('Momen berhasil ditambahkan!');
+    }
+
+    async function deleteStoryItem(idx) {
+      const stories = currentInvitation.love_story || [];
+      stories.splice(idx, 1);
+      await triggerAutoSave({ love_story: stories });
+      currentInvitation.love_story = stories;
+      renderStoryItems(stories);
+      showToast('Momen dihapus.');
+    }
+
+    // Custom Events Editor (RULE 8: Client dapat menambahkan beberapa acara)
+    function renderCustomEvents(events) {
+      const container = document.getElementById('customEventsList');
+      if (!events || events.length === 0) {
+        container.innerHTML = '<p style="font-size: 0.82rem; color: #64748b;">Hanya menampilkan Akad & Resepsi standar. Anda dapat menambah acara kustom (contoh: Walimatul Urs, Doa Bersama).</p>';
+        return;
+      }
+      container.innerHTML = events.map((ev, idx) => `
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <strong>${ev.title}</strong> (${ev.date || ''} - ${ev.time || ''})<br>
+            <small style="color: #64748b;">${ev.location || ''}</small>
+          </div>
+          <button type="button" onclick="deleteCustomEvent(${idx})" class="btn btn-danger btn-sm">Hapus</button>
+        </div>
+      `).join('');
+    }
+
+    async function openAddEventModal() {
+      const title = prompt('Nama Acara (contoh: Walimatul Urs / Doa Bersama / Unduh Mantu):');
+      if (!title) return;
+      const date = prompt('Hari & Tanggal (contoh: Minggu, 13 Desember 2026):') || '';
+      const time = prompt('Waktu Acara (contoh: 19.00 WIB):') || '';
+      const location = prompt('Nama Tempat / Lokasi:') || '';
+      const address = prompt('Alamat Lengkap:') || '';
+      const map_url = prompt('Link Google Maps:') || '';
+
+      const events = currentInvitation.events_data || [];
+      events.push({ title, date, time, location, address, map_url, icon: '✨' });
+      await triggerAutoSave({ events_data: events });
+      currentInvitation.events_data = events;
+      renderCustomEvents(events);
+      showToast('Acara tambahan berhasil disimpan!');
+    }
+
+    async function deleteCustomEvent(idx) {
+      const events = currentInvitation.events_data || [];
+      events.splice(idx, 1);
+      await triggerAutoSave({ events_data: events });
+      currentInvitation.events_data = events;
+      renderCustomEvents(events);
+      showToast('Acara dihapus.');
+    }
+
+    // Bank Accounts Handling (RULE 14)
     function renderBankAccounts(accounts) {
       const container = document.getElementById('bankList');
       if (!accounts || accounts.length === 0) {
@@ -861,7 +1223,7 @@
       showToast('Rekening dihapus.');
     }
 
-    // Guest Management (RULE 6: GUEST TOKEN & NAMA TAMU KHUSUS)
+    // Guest Management (RULE 6, 17, 20)
     function renderGuests() {
       const container = document.getElementById('guestsContainer');
       if (!guestList || guestList.length === 0) {
@@ -874,13 +1236,14 @@
       container.innerHTML = guestList.map(guest => {
         const guestLink = `${domain}/u/${currentInvitation.slug}/${guest.guest_token}`;
         const waText = encodeURIComponent(
-          `Kepada Yth. Bapak/Ibu/Saudara/i\n*${guest.name}*\n\nTanpa mengurangi rasa hormat, perkenankan kami mengundang Anda untuk menghadiri acara pernikahan kami:\n\n*${currentInvitation.title}*\n\nInformasi lengkap acara & konfirmasi kehadiran dapat diakses melalui tautan berikut:\n${guestLink}\n\nMerupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.\n\nTerima kasih.`
+          `Assalamu'alaikum Warahmatullahi Wabarakatuh\n\nKepada Yth. Bapak/Ibu/Saudara/i\n*${guest.name}*\n\nTanpa mengurangi rasa hormat, perkenankan kami mengundang Anda untuk menghadiri acara pernikahan kami:\n\n*${currentInvitation.title}*\n\nInformasi lengkap acara & konfirmasi kehadiran dapat diakses melalui tautan undangan digital berikut:\n${guestLink}\n\nMerupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.\n\nJazakumullahu Khairan Katsiran.\nWassalamu'alaikum Warahmatullahi Wabarakatuh.`
         );
         const waUrl = `https://api.whatsapp.com/send?${guest.phone ? 'phone=' + guest.phone + '&' : ''}text=${waText}`;
 
         let statusBadge = '<span class="badge badge-warning">Pending</span>';
         if (guest.attendance_status === 'hadir') statusBadge = `<span class="badge badge-success">Hadir (${guest.total_pax || 1} orang)</span>`;
         if (guest.attendance_status === 'tidak_hadir') statusBadge = '<span class="badge badge-danger">Tidak Hadir</span>';
+        if (guest.attendance_status === 'ragu') statusBadge = '<span class="badge badge-warning">Masih Ragu</span>';
 
         return `
           <div class="guest-item">
@@ -898,11 +1261,11 @@
             </div>
 
             <div class="guest-actions" style="margin-top: 4px;">
-              <button onclick="copyToClipboard('${guestLink}', 'Guest Link untuk ${guest.name.replace(/'/g, "\\'")} disalin!')" class="btn btn-secondary btn-sm">
+              <button onclick="copyToClipboard('${guestLink}', 'Link khusus untuk ${guest.name.replace(/'/g, "\\'")} berhasil disalin!')" class="btn btn-secondary btn-sm">
                 📋 Salin Link
               </button>
               <a href="${waUrl}" target="_blank" class="btn btn-sm" style="background: #25d366; color: #ffffff; text-decoration: none;">
-                💬 Kirim WhatsApp
+                💬 WhatsApp
               </a>
               <a href="${guestLink}" target="_blank" class="btn btn-secondary btn-sm">
                 👁️ Preview
@@ -962,7 +1325,7 @@
       }
     }
 
-    // Render Wishes
+    // Wishes List
     function renderWishes(wishes) {
       const container = document.getElementById('wishesContainer');
       if (!wishes || wishes.length === 0) {
@@ -983,7 +1346,7 @@
       `).join('');
     }
 
-    // Share Modal Handling (RULE 9)
+    // Share Modal Handling (RULE 9 & 20)
     const shareModal = document.getElementById('shareModal');
     const openShareBtn = document.getElementById('openShareModalBtn');
     const closeShareBtn = document.getElementById('closeShareModalBtn');
@@ -1000,7 +1363,7 @@
     shareWaBtn.addEventListener('click', () => {
       const link = document.getElementById('sharePublicLink').value;
       const text = encodeURIComponent(
-        `Assalamu'alaikum Wr. Wb.\n\nTanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami:\n\n*${currentInvitation.title}*\n\nInfo lengkap dapat dilihat pada link berikut:\n${link}\n\nTerima kasih.`
+        `Assalamu'alaikum Warahmatullahi Wabarakatuh\n\nTanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami:\n\n*${currentInvitation.title}*\n\nInformasi lengkap acara & doa restu dapat diakses melalui link berikut:\n${link}\n\nJazakumullahu Khairan Katsiran.\nWassalamu'alaikum Warahmatullahi Wabarakatuh.`
       );
       window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
     });

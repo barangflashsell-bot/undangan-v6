@@ -75,12 +75,12 @@ router.post('/invitations', adminAuth, (req, res) => {
 
   // Generate secure random management token
   const managementToken = generateToken(16);
-  theme_id = theme_id || 'islami-emerald';
+  theme_id = theme_id || 'islamic-elegant';
 
   const defaultLoveStory = JSON.stringify([
-    { year: '2022', title: 'Pertemuan Pertama', desc: 'Awal mula perkenalan yang penuh berkah dan kesederhanaan.' },
-    { year: '2024', title: 'Keseriusan', desc: 'Pertemuan kedua keluarga untuk merencanakan ikatan suci pernikahan.' },
-    { year: '2026', title: 'Pernikahan', desc: 'Melangkah ke jenjang pelaminan membangun bahtera rumah tangga.' }
+    { year: '2022', title: 'Awal Pertemuan', desc: 'Awal mula perkenalan yang penuh berkah dan kesederhanaan.' },
+    { year: '2024', title: 'Keseriusan & Lamaran', desc: 'Pertemuan kedua keluarga untuk merencanakan ikatan suci pernikahan.' },
+    { year: '2026', title: 'Menuju Hari Bahagia', desc: 'Melangkah ke jenjang pelaminan membangun bahtera rumah tangga sakinah mawaddah warahmah.' }
   ]);
   const defaultGallery = JSON.stringify([
     'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&auto=format&fit=crop&q=80',

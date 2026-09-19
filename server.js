@@ -56,9 +56,11 @@ app.get('/', (req, res) => {
 // Start Server
 app.listen(PORT, () => {
   console.log(`====================================================`);
-  console.log(`  UNDANGAN DIGITAL V5 RUNNING AT http://localhost:${PORT}`);
-  console.log(`  1. Admin Panel:     http://localhost:${PORT}/admin/login`);
-  console.log(`  2. Management Demo: http://localhost:${PORT}/manage/AbC82xP92LmK7nQ4`);
-  console.log(`  3. Guest Link Demo: http://localhost:${PORT}/u/wedding-andi-sinta/X7mQa9`);
+  console.log(`  UNDANGAN DIGITAL V6 RUNNING AT http://localhost:${PORT}`);
+  console.log(`  Tema: Islamic Elegant (Emerald & Soft Gold)`);
+  console.log(`  1. Portal Utama:    http://localhost:${PORT}/`);
+  console.log(`  2. Admin Panel:     http://localhost:${PORT}/admin/login`);
+  console.log(`  3. Management Demo: http://localhost:${PORT}/manage/AbC82xP92LmK7nQ4`);
+  console.log(`  4. Guest Link VIP:  http://localhost:${PORT}/u/wedding-ahmad-aisyah/X7mQa9`);
   console.log(`====================================================`);
 });

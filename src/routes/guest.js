@@ -13,9 +13,11 @@ router.get('/:slug/:guestToken?', (req, res) => {
   let love_story = [];
   let gallery_photos = [];
   let bank_accounts = [];
+  let events_data = [];
   try { love_story = JSON.parse(invitation.love_story || '[]'); } catch (e) {}
   try { gallery_photos = JSON.parse(invitation.gallery_photos || '[]'); } catch (e) {}
   try { bank_accounts = JSON.parse(invitation.bank_accounts || '[]'); } catch (e) {}
+  try { events_data = JSON.parse(invitation.events_data || '[]'); } catch (e) {}
 
   const wishes = db.prepare('SELECT id, sender_name, message, attendance, created_at FROM wishes WHERE invitation_id = ? ORDER BY id DESC LIMIT 50').all(invitation.id);
 
@@ -44,8 +46,23 @@ router.get('/:slug/:guestToken?', (req, res) => {
     resepsi_location: invitation.resepsi_location,
     resepsi_address: invitation.resepsi_address,
     resepsi_map_url: invitation.resepsi_map_url,
+    events_data,
+    bismillah_enabled: invitation.bismillah_enabled !== undefined ? invitation.bismillah_enabled : 1,
+    salam_opening: invitation.salam_opening,
+    opening_text: invitation.opening_text,
+    quote_enabled: invitation.quote_enabled !== undefined ? invitation.quote_enabled : 1,
+    quote_arabic: invitation.quote_arabic,
     quote_text: invitation.quote_text,
     quote_source: invitation.quote_source,
+    closing_title: invitation.closing_title,
+    closing_text: invitation.closing_text,
+    closing_salam: invitation.closing_salam,
+    section_countdown_enabled: invitation.section_countdown_enabled !== undefined ? invitation.section_countdown_enabled : 1,
+    section_story_enabled: invitation.section_story_enabled !== undefined ? invitation.section_story_enabled : 1,
+    section_gallery_enabled: invitation.section_gallery_enabled !== undefined ? invitation.section_gallery_enabled : 1,
+    section_gift_enabled: invitation.section_gift_enabled !== undefined ? invitation.section_gift_enabled : 1,
+    section_rsvp_enabled: invitation.section_rsvp_enabled !== undefined ? invitation.section_rsvp_enabled : 1,
+    section_wishes_enabled: invitation.section_wishes_enabled !== undefined ? invitation.section_wishes_enabled : 1,
     love_story,
     gallery_photos,
     music_url: invitation.music_url,

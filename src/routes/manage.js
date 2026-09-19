@@ -21,9 +21,11 @@ router.get('/:managementToken', (req, res) => {
   let love_story = [];
   let gallery_photos = [];
   let bank_accounts = [];
+  let events_data = [];
   try { love_story = JSON.parse(invitation.love_story || '[]'); } catch (e) {}
   try { gallery_photos = JSON.parse(invitation.gallery_photos || '[]'); } catch (e) {}
   try { bank_accounts = JSON.parse(invitation.bank_accounts || '[]'); } catch (e) {}
+  try { events_data = JSON.parse(invitation.events_data || '[]'); } catch (e) {}
 
   res.json({
     success: true,
@@ -31,7 +33,8 @@ router.get('/:managementToken', (req, res) => {
       ...invitation,
       love_story,
       gallery_photos,
-      bank_accounts
+      bank_accounts,
+      events_data
     },
     guests,
     wishes,
@@ -60,7 +63,13 @@ router.put('/:managementToken', (req, res) => {
     'akad_date', 'akad_time', 'akad_location', 'akad_address', 'akad_map_url',
     'resepsi_date', 'resepsi_time', 'resepsi_location', 'resepsi_address', 'resepsi_map_url',
     'quote_text', 'quote_source',
-    'music_url'
+    'music_url',
+    'bismillah_enabled', 'salam_opening', 'opening_text',
+    'quote_enabled', 'quote_arabic',
+    'closing_title', 'closing_text', 'closing_salam',
+    'section_countdown_enabled', 'section_story_enabled',
+    'section_gallery_enabled', 'section_gift_enabled',
+    'section_rsvp_enabled', 'section_wishes_enabled'
   ];
 
   const updates = [];
@@ -86,6 +95,10 @@ router.put('/:managementToken', (req, res) => {
     updates.push('bank_accounts = ?');
     params.push(typeof data.bank_accounts === 'string' ? data.bank_accounts : JSON.stringify(data.bank_accounts));
   }
+  if (data.events_data !== undefined) {
+    updates.push('events_data = ?');
+    params.push(typeof data.events_data === 'string' ? data.events_data : JSON.stringify(data.events_data));
+  }
 
   if (updates.length > 0) {
     updates.push('updated_at = CURRENT_TIMESTAMP');
@@ -104,7 +117,7 @@ router.put('/:managementToken/theme', (req, res) => {
   const invitation = req.invitation;
   const { theme_id } = req.body;
 
-  const validThemes = ['islami-emerald', 'rose-gold', 'modern-minimalist', 'rustic-flora'];
+  const validThemes = ['islamic-elegant', 'islami-emerald', 'rose-gold', 'modern-minimalist', 'rustic-flora'];
   if (!theme_id || !validThemes.includes(theme_id)) {
     return res.status(400).json({ success: false, error: 'Pilihan tema tidak valid.' });
   }
